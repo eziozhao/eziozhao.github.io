@@ -299,31 +299,34 @@
       
         
           
-            <p>#zerotier介绍<br>这是一款能够帮助你轻松实现虚拟局域网的软件。通过它，你可以将100台设备(免费版账号)加入自己创建的虚拟局域网。且该软件支持支持 Windows、macOS、Linux 三大桌面平台，iOS、Android 两大移动平台。<a href="https://www.zerotier.com/" target="_blank" rel="noopener">官网地址</a></p>
-<p>#注册与使用<br>该过程十分简单，按照以下四步即可，具体过程网上资料很多，不再赘述。<br></p>
+            <h1 id="zerotier介绍"><a href="#zerotier介绍" class="headerlink" title="zerotier介绍"></a>zerotier介绍</h1><p>这是一款能够帮助你轻松实现虚拟局域网的软件。通过它，你可以将100台设备(免费版账号)加入自己创建的虚拟局域网。且该软件支持支持 Windows、macOS、Linux 三大桌面平台，iOS、Android 两大移动平台。<a href="https://www.zerotier.com/" target="_blank" rel="noopener">官网地址</a></p>
+<h1 id="注册与使用"><a href="#注册与使用" class="headerlink" title="注册与使用"></a>注册与使用</h1><p>该过程十分简单，按照以下四步即可，具体过程网上资料很多，不再赘述。<br></p>
 <ol>
 <li><a href="https://www.zerotier.com/download/" target="_blank" rel="noopener">下载zerotier</a></li>
 <li><a href="https://my.zerotier.com/login" target="_blank" rel="noopener">注册</a></li>
 <li>创建自己的Network</li>
-<li>将需要的设备加入虚拟局域网<br>#配置中转moon<br>国内用户实际使用zerotier时会发现延迟很高。比如在自己搭建的虚拟局域网中使用windows远程桌面，经常卡屏。怎么办呢？别担心，zerotier官方已经帮你想好了解决方案。<br>首先，明确几个名词</li>
+<li>将需要的设备加入虚拟局域网  <h1 id="配置中转moon"><a href="#配置中转moon" class="headerlink" title="配置中转moon"></a>配置中转moon</h1>国内用户实际使用zerotier时会发现延迟很高。比如在自己搭建的虚拟局域网中使用windows远程桌面，经常卡屏。怎么办呢？别担心，zerotier官方已经帮你想好了解决方案。<br>首先，明确几个名词</li>
 </ol>
 <ul>
 <li>planet 行星节点，zerotier官方提供的根服务器</li>
 <li>moon 卫星节点 用户自己搭建的服务器，可以中转加速</li>
 <li>leaf 相当于用户实际想组成局域网的那些客户端</li>
 </ul>
-<p>##配置步骤<br>为了避免不必要的麻烦，以下所有命令都默认在管理员状态下进行</p>
-<pre><code>sudo -i//该命令可进入管理员状态</code></pre><p>###1、拥有一台自己的vps<br>巧妇难为无米之炊，没有自己的服务器何谈加速一说。moon节点服务器不需要多高的配置，关于如何购买请自行搜索。很多平台现在也支持支付宝等国内软件进行支付。如果你只有短期需求，也可以使用谷歌或亚马逊提供的一年免费云服务，有支持外币的信用卡就可以申请。<br>###2、在moon服务器中安装zerotier<br>复制以下命令  </p>
-<pre><code>curl -s https://install.zerotier.com/ | sudo bash</code></pre><p>###3、将moon节点加入网络<br>归根结底，moon节点只是你个人的一个加速器，zerotier官方提供的NetWork环境还是必不可少的。moon节点和所有的客户机都需要加入你在zerotier官网创建的network。<br>在moon服务中输入以下命令，其中network id是你在zerotier官网创建的network的id  </p>
-<pre><code>zerotier-cli join &lt;network id&gt;</code></pre><p>###4、生成moon.json配置文件<br>    cd /var/lib/zerotier-one //进入目录 之后的命令基本都在该目录执行<br>    zerotier-idtool initmoon identity.public &gt; moon.json //生成文件<br>###5、修改配置文件<br>使用以下命令进入配置文件，按<strong>i</strong>进入编辑状态。</p>
+<h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><p>为了避免不必要的麻烦，以下所有命令都默认在管理员状态下进行</p>
+<pre><code>sudo -i//该命令可进入管理员状态</code></pre><h3 id="1、拥有一台自己的vps"><a href="#1、拥有一台自己的vps" class="headerlink" title="1、拥有一台自己的vps"></a>1、拥有一台自己的vps</h3><p>巧妇难为无米之炊，没有自己的服务器何谈加速一说。moon节点服务器不需要多高的配置，关于如何购买请自行搜索。很多平台现在也支持支付宝等国内软件进行支付。如果你只有短期需求，也可以使用谷歌或亚马逊提供的一年免费云服务，有支持外币的信用卡就可以申请。</p>
+<h3 id="2、在moon服务器中安装zerotier"><a href="#2、在moon服务器中安装zerotier" class="headerlink" title="2、在moon服务器中安装zerotier"></a>2、在moon服务器中安装zerotier</h3><p>复制以下命令  </p>
+<pre><code>curl -s https://install.zerotier.com/ | sudo bash</code></pre><h3 id="3、将moon节点加入网络"><a href="#3、将moon节点加入网络" class="headerlink" title="3、将moon节点加入网络"></a>3、将moon节点加入网络</h3><p>归根结底，moon节点只是你个人的一个加速器，zerotier官方提供的NetWork环境还是必不可少的。moon节点和所有的客户机都需要加入你在zerotier官网创建的network。<br>在moon服务中输入以下命令，其中network id是你在zerotier官网创建的network的id  </p>
+<pre><code>zerotier-cli join &lt;network id&gt;</code></pre><h3 id="4、生成moon-json配置文件"><a href="#4、生成moon-json配置文件" class="headerlink" title="4、生成moon.json配置文件"></a>4、生成moon.json配置文件</h3><pre><code>cd /var/lib/zerotier-one //进入目录 之后的命令基本都在该目录执行
+zerotier-idtool initmoon identity.public &gt; moon.json //生成文件</code></pre><h3 id="5、修改配置文件"><a href="#5、修改配置文件" class="headerlink" title="5、修改配置文件"></a>5、修改配置文件</h3><p>使用以下命令进入配置文件，按<strong>i</strong>进入编辑状态。</p>
 <pre><code>[root@moon zerotier-one]# vi moon.json</code></pre><p>修改<strong>stableEndpoints</strong>的值，同时记录一下<strong>id</strong>的值，是一个10位字符串，后面有用。</p>
-<pre><code>&quot;stableEndpoints&quot;: [ &quot;你的vps的ip/9993&quot; ] //9993是zerotier指定的默认端口</code></pre><p>修改完成后，按esc退出编辑状态，然后输入<strong>:wq</strong>保存并退出。<br>###6、生成moon文件<br>首先在/var/lib/zerotier-one目录新建<strong>moons.d</strong>文件夹  </p>
+<pre><code>&quot;stableEndpoints&quot;: [ &quot;你的vps的ip/9993&quot; ] //9993是zerotier指定的默认端口</code></pre><p>修改完成后，按esc退出编辑状态，然后输入<strong>:wq</strong>保存并退出。</p>
+<h3 id="6、生成moon文件"><a href="#6、生成moon文件" class="headerlink" title="6、生成moon文件"></a>6、生成moon文件</h3><p>首先在/var/lib/zerotier-one目录新建<strong>moons.d</strong>文件夹  </p>
 <pre><code>mkdir moons.d</code></pre><p>生成文件  </p>
 <pre><code>zerotier-idtool genmoon moon.json</code></pre><p>并将生成的 moon 文件放到该文件夹中，其中xxx是之前提到的配置文件中的id</p>
-<pre><code>mv 000000xxxxxxxxxx.moon moons.d/</code></pre><p>###7、重启vps的zerotier</p>
-<pre><code>killall -9 zerotier-one</code></pre><p>如果提示<strong>killall: command not found</strong>，则需要先安装<br>debian、ubuntu系统下：</p>
+<pre><code>mv 000000xxxxxxxxxx.moon moons.d/</code></pre><h3 id="7、重启vps的zerotier"><a href="#7、重启vps的zerotier" class="headerlink" title="7、重启vps的zerotier"></a>7、重启vps的zerotier</h3><pre><code>killall -9 zerotier-one</code></pre><p>如果提示<strong>killall: command not found</strong>，则需要先安装<br>debian、ubuntu系统下：</p>
 <pre><code>apt-get install psmisc</code></pre><p>centos 下：</p>
-<pre><code>yum install psmisc</code></pre><p>至此，vps上的操作完成。<br>###8、将客户机连接到你的moon<br>zerotier在不同系统的安装目录如下</p>
+<pre><code>yum install psmisc</code></pre><p>至此，vps上的操作完成。</p>
+<h3 id="8、将客户机连接到你的moon"><a href="#8、将客户机连接到你的moon" class="headerlink" title="8、将客户机连接到你的moon"></a>8、将客户机连接到你的moon</h3><p>zerotier在不同系统的安装目录如下</p>
 <pre><code>Windows: C:\ProgramData\ZeroTier\One
 Macintosh: /Library/Application Support/ZeroTier/One (在 Terminal 中应为 /Library/Application\ Support/ZeroTier/One)
 Linux: /var/lib/zerotier-one</code></pre><p>以<strong>管理员</strong>身份打开命令行，进到安装目录下。输入以下命令<br>注意：如果没有管理员权限，可能会报错</p>
