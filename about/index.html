@@ -293,6 +293,11 @@
           
 
   
+    <div class="comments" id="comments">
+        <div id="gitalk-container"></div>
+    </div>
+
+  
 
 
 
@@ -571,6 +576,21 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'ff2070a2cd54acf99e43',
+          clientSecret: '88520fd1d0244b4dc73127dd8053f755fd58e759',
+          repo: 'gitalk',
+          owner: 'eziozhao',
+          admin: ['eziozhao'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
   
 
