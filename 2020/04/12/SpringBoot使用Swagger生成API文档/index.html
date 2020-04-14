@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="EzioZhao">
 <meta property="og:description" content="简介Swagger是一种REST APIs的简单但强大的表示方式，标准的，语言无关，这种表示方式不但人可读，而且机器可读。可以作为REST APIs的交互式文档，也可以作为REST APIs的形式化的接口描述，生成客户端和服务端的代码。 使用引入依赖&lt;dependency&gt;     &lt;groupId&gt;io.springfox&lt;&#x2F;groupId&gt;     &lt;">
 <meta property="article:published_time" content="2020-04-12T12:22:32.000Z">
-<meta property="article:modified_time" content="2020-04-12T12:36:24.251Z">
+<meta property="article:modified_time" content="2020-04-14T12:41:35.682Z">
 <meta property="article:author" content="Ezio Zhao">
 <meta property="article:tag" content="springboot">
 <meta name="twitter:card" content="summary">
@@ -366,39 +366,9 @@
     &lt;groupId&gt;io.springfox&lt;/groupId&gt;
     &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
     &lt;version&gt;2.2.2&lt;/version&gt;
-&lt;/dependency&gt;</code></pre><h3 id="创建配置类"><a href="#创建配置类" class="headerlink" title="创建配置类"></a>创建配置类</h3><pre><code>import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+&lt;/dependency&gt;</code></pre><h3 id="创建配置类"><a href="#创建配置类" class="headerlink" title="创建配置类"></a>创建配置类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.PathSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.ApiInfo;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spi.DocumentationType;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spring.web.plugins.Docket;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger</span>2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swagger2Config</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">createRestApi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .apiInfo(apiInfo())</span><br><span class="line">                .select()</span><br><span class="line">                <span class="comment">//为当前包下controller生成API文档</span></span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(<span class="string">"com.macro.mall.tiny.controller"</span>))</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">"SwaggerUI演示"</span>)</span><br><span class="line">                .description(<span class="string">"myblog"</span>)</span><br><span class="line">                .contact(<span class="string">"ezio"</span>)</span><br><span class="line">                .version(<span class="string">"1.0"</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-@Configuration
-@EnableSwagger2
-public class Swagger2Config {
-    @Bean
-    public Docket createRestApi(){
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .select()
-                //为当前包下controller生成API文档
-                .apis(RequestHandlerSelectors.basePackage(&quot;com.macro.mall.tiny.controller&quot;))
-                .paths(PathSelectors.any())
-                .build();
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title(&quot;SwaggerUI演示&quot;)
-                .description(&quot;myblog&quot;)
-                .contact(&quot;ezio&quot;)
-                .version(&quot;1.0&quot;)
-                .build();
-    }
-}</code></pre><h3 id="在Controller层中添加相应注解"><a href="#在Controller层中添加相应注解" class="headerlink" title="在Controller层中添加相应注解"></a>在Controller层中添加相应注解</h3><ul>
+<h3 id="在Controller层中添加相应注解"><a href="#在Controller层中添加相应注解" class="headerlink" title="在Controller层中添加相应注解"></a>在Controller层中添加相应注解</h3><ul>
 <li>@Api 修饰Controller,在文档中显示相应tags</li>
 <li>@ApiImplicitParam 修饰请求参数，添加参数描述信息</li>
 <li>@ApiOperation 修饰请求的方法，生成方法对应的文档</li>
