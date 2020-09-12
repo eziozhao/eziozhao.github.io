@@ -186,16 +186,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -263,7 +253,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ezio Zhao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -357,7 +347,7 @@
 
 Demo不想看的后面的直接复制走
 1、封装好的richtext组件
-12345678910111213141516171819202122232425262728293031323334
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778&lt;template&gt;  &lt;editor :id="tinymceId" :init="init"&gt;&
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -417,7 +407,7 @@ Demo不想看的后面的直接复制走
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ezio Zhao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -486,162 +476,13 @@ Demo不想看的后面的直接复制走
         
           
           后端Java Iterator接口主要用来操作java中的集合对象（Collection）
-12345public interface Iterator&lt;E&gt; &#123;    boolean hasNext();    E next();    void remove();&#125
+12345public interface Iterator&lt;E&gt; &#123;    boolean hasNext();    E next();    void remove();&#125;
+Iterable接口jdk1.5之后新增了Iterable接口用于支持foreach循环，Iterable接口只有一个方法，就是iterator()方法，返回集合的Iterator对象，有实现Iterable接口的对象都可以实现foreach循环操作
+123   public interface
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/04/12/%E5%91%A8%E6%9C%AB%E6%80%BB%E7%BB%9320-4-12/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/SpringBoot%E4%BD%BF%E7%94%A8Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ezio Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="EzioZhao">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/12/SpringBoot%E4%BD%BF%E7%94%A8Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3/" itemprop="url">SpringBoot使用Swagger生成API文档</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-12T20:22:32+08:00">
-                2020-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">后端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-		  
-		  
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          简介Swagger是一种REST APIs的简单但强大的表示方式，标准的，语言无关，这种表示方式不但人可读，而且机器可读。可以作为REST APIs的交互式文档，也可以作为REST APIs的形式化的接口描述，生成客户端和服务端的代码。
-使用引入依赖12345678910&lt;dependency
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/12/SpringBoot%E4%BD%BF%E7%94%A8Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -697,7 +538,7 @@ Demo不想看的后面的直接复制走
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ezio Zhao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -792,11 +633,165 @@ Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选
 
 安装与配置安装首先到github上下载你需要的版本 下载地址 
 下载之后的文件解压缩，复制到安装目录。本文以D:/redis为例。
-在安装目录中双击打开redis-server.exe
+在安装目录中双击打开redis-server.exe，出现如下字样，代表启动成功。
+[15008] 14 Mar 10:09:21.250 # Server started, Redis version 3.2.100
+[15008] 14 Mar 10:09:21.250 * DB loaded from disk: 0.000 seconds
+[
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/04/12/Springboot%E9%A1%B9%E7%9B%AE%E4%B8%ADRedis%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/SpringBoot%E4%BD%BF%E7%94%A8Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ezio Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EzioZhao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/12/SpringBoot%E4%BD%BF%E7%94%A8Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3/" itemprop="url">SpringBoot使用Swagger生成API文档</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-12T20:22:32+08:00">
+                2020-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+		  
+		  
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简介Swagger是一种REST APIs的简单但强大的表示方式，标准的，语言无关，这种表示方式不但人可读，而且机器可读。可以作为REST APIs的交互式文档，也可以作为REST APIs的形式化的接口描述，生成客户端和服务端的代码。
+使用引入依赖12345678910&lt;dependency&gt;	&lt;groupId&gt;io.springfox&lt;/groupId&gt;	&lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;	&lt;version&gt;2.2.2&lt;/version&gt;&lt;/depe
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/12/SpringBoot%E4%BD%BF%E7%94%A8Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -852,7 +847,7 @@ Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ezio Zhao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -944,7 +939,11 @@ Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选
           
           ##项目build生成静态文件首先将写好的vue项目打包
 npm run build打包后可以看到项目中多出一个dist文件夹，其中包含了一个static文件夹和index.html页面##将dist文件上传到服务器使用xshell连接服务器，进入你想要存放的目录，本文以/usr/share为例
-c
+cd /usr/share在当前目录下输入rz命令，选择压缩后的dist文件，上传
+如果提示command not found，则需要安装rz命令。先切换到root用户，输入以下命令
+yum -y install lrzsz安装后就可以正常使用了##服务器安装配置nginx
+
+Nginx是异步框架的网
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1004,7 +1003,7 @@ c
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ezio Zhao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1095,7 +1094,14 @@ c
         
           
           zerotier介绍这是一款能够帮助你轻松实现虚拟局域网的软件。通过它，你可以将100台设备(免费版账号)加入自己创建的虚拟局域网。且该软件支持支持 Windows、macOS、Linux 三大桌面平台，iOS、Android 两大移动平台。官网地址
-注册与使用该过程十分简单，按照以下四步即可，具体
+注册与使用该过程十分简单，按照以下四步即可，具体过程网上资料很多，不再赘述。
+
+下载zerotier
+注册
+创建自己的Network
+将需要的设备加入虚拟局域网  
+
+配置中转moon国内用户实际使用zerotier时会发现延迟很高。比如在自己搭建的虚拟局域网中使用windows远程桌面，经常卡屏。怎么办呢？别担心，zerotier官方已经帮你想
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1171,6 +1177,10 @@ c
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Ezio Zhao" />
             
               <p class="site-author-name" itemprop="name">Ezio Zhao</p>
               <p class="site-description motion-element" itemprop="description"></p>
