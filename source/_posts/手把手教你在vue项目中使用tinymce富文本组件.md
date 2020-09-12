@@ -21,8 +21,7 @@ npm install @tinymce/tinymce-vue
 
 ```jsx
 <template>
-  <editor :id="tinymceId" :init="init">
-  </editor>
+  <editor :id="tinymceId" :init="init"></editor>
 </template>
 
 <script>
@@ -136,7 +135,7 @@ export default {
 
 1、skin_url是必填属性，没有的话会导致组件不能显示。需要到node_modules中找到tinymce对应的文件夹，将其中的skins文件夹复制出来。我这里复制到了 static/tinymce 中，然后在init中填写对应路径
 
-![](https://imgchr.com/i/waAnII)
+![waAnII.png](https://s1.ax1x.com/2020/09/12/waAnII.png)
 
 2、没有toolbar属性，组件会只显示一个文本框，所以该属性必填。
 
@@ -152,7 +151,7 @@ export default {
 
 注意：使用了一个插件，就要在组件中import它。具体可使用的插件，可在node_modules的tinymce中的plugins中查看
 
-![](https://imgchr.com/i/waAKit)
+![waAKit.png](https://s1.ax1x.com/2020/09/12/waAKit.png)
 
 ## 关于图片上传插件
 
