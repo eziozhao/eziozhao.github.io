@@ -8,19 +8,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.eziozhao.com">
-  <title>vue项目部署到centos7服务器 | EzioZhao</title>
+  <title>2020年还不懂vue生命周期？一文带你理解vue生命周期那些事 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="项目build生成静态文件 首先将写好的vue项目打包  npm run build  打包后可以看到项目中多出一个dist文件夹，其中包含了一个static文件夹和index.html页面 ##将dist文件上传到服务器 使用xshell连接服务器，进入你想要存放的目录，本文以&#x2F;usr&#x2F;share为例  cd &#x2F;usr&#x2F;share  在当前目录下输入rz命令，选择压缩后的dist文件，上传  如">
+  <meta name="description" content="前言(没什么用别看了) 所谓生命周期，就是vue实例从创建到销毁所经历的一系列过程，掌握生命周期能帮我们更好的了解vue的设计思想，也更方便debug。  vue为我们提供了一系列钩子函数，方便我们在各阶段进行操作，本文也先从这些钩子函数说起。  Demo 我们创建一对父子组件，并通过观察子组件的创建过程，来了解生命周期的变化。  父组件  1 2 3 4 5 6 7 8 9 10 11 12 1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue项目部署到centos7服务器">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;article&#x2F;4f35d1fd.html">
+<meta property="og:title" content="2020年还不懂vue生命周期？一文带你理解vue生命周期那些事">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;article&#x2F;undefined.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="项目build生成静态文件 首先将写好的vue项目打包  npm run build  打包后可以看到项目中多出一个dist文件夹，其中包含了一个static文件夹和index.html页面 ##将dist文件上传到服务器 使用xshell连接服务器，进入你想要存放的目录，本文以&#x2F;usr&#x2F;share为例  cd &#x2F;usr&#x2F;share  在当前目录下输入rz命令，选择压缩后的dist文件，上传  如">
-<meta property="article:published_time" content="2020-04-12T12:22:32.000Z">
-<meta property="article:modified_time" content="2020-09-13T08:56:14.071Z">
+<meta property="og:description" content="前言(没什么用别看了) 所谓生命周期，就是vue实例从创建到销毁所经历的一系列过程，掌握生命周期能帮我们更好的了解vue的设计思想，也更方便debug。  vue为我们提供了一系列钩子函数，方便我们在各阶段进行操作，本文也先从这些钩子函数说起。  Demo 我们创建一对父子组件，并通过观察子组件的创建过程，来了解生命周期的变化。  父组件  1 2 3 4 5 6 7 8 9 10 11 12 1">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBFJnU.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;w0XygH.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;w0j9xJ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;w0v9Ff.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;w0xFN6.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBFA6f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBp9Bj.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBpECV.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBplU1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBiIw4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBE7DK.png">
+<meta property="article:published_time" content="2020-09-13T08:59:41.000Z">
+<meta property="article:modified_time" content="2020-09-13T14:54:00.915Z">
 <meta property="article:author" content="Ezio Zhao">
-<meta property="article:tag" content="部署">
+<meta property="article:tag" content="-vue">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBFJnU.png">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
   
@@ -142,14 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vue项目部署到centos7服务器" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2020年还不懂vue生命周期？一文带你理解vue生命周期那些事" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      vue项目部署到centos7服务器
+      2020年还不懂vue生命周期？一文带你理解vue生命周期那些事
     </h1>
   
 
@@ -160,42 +172,50 @@
           <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
     </span>
 
-<a href="/article/4f35d1fd.html" class="archive-article-date">
-  	<time datetime="2020-04-12T12:22:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
+<a href="/article/undefined.html" class="archive-article-date">
+  	<time datetime="2020-09-13T08:59:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
 	  
-        <h2 id="项目build生成静态文件"><a href="#项目build生成静态文件" class="headerlink" title="项目build生成静态文件"></a>项目build生成静态文件</h2><p>首先将写好的vue项目打包</p>
-<a id="more"></a>
-
-<pre><code>npm run build</code></pre><p>打包后可以看到项目中多出一个<em>dist</em>文件夹，其中包含了一个<em>static</em>文件夹和index.html页面<br>##将dist文件上传到服务器<br>使用xshell连接服务器，进入你想要存放的目录，本文以/usr/share为例</p>
-<pre><code>cd /usr/share</code></pre><p>在当前目录下输入rz命令，选择压缩后的dist文件，上传</p>
-<p>如果提示command not found，则需要安装rz命令。先切换到root用户，输入以下命令</p>
-<pre><code>yum -y install lrzsz</code></pre><p>安装后就可以正常使用了</p>
-<h2 id="服务器安装配置nginx"><a href="#服务器安装配置nginx" class="headerlink" title="服务器安装配置nginx"></a>服务器安装配置nginx</h2><blockquote>
-<p>Nginx是异步框架的网页服务器，也可以用作反向代理、负载平衡器和HTTP缓存。——维基百科</p>
-</blockquote>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>因为yum中没有nginx 所以通过以下命令将nginx加入</p>
-<pre><code>rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</code></pre><p>使用yum安装</p>
-<pre><code>yum install nginx</code></pre><p>查看版本，验证是否安装成功</p>
-<pre><code>nginx -v</code></pre><p>启动nginx</p>
-<pre><code>service nginx start</code></pre><p>现在，在浏览器中输入服务器的公网ip，就可以看到nginx页面了</p>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在服务器中打开nginx配置文件，本文路径在<em>/etc/</em>下</p>
-<pre><code>vim /etc/nginx/nginx.conf</code></pre><p>打开的配置文件修改对应项</p>
-<pre><code> server {
-    listen       80;
-    listen       [::]:80;
-    server_name  你的服务器绑定的域名;
-    root         你的dist文件存放路径;
-    location / {
-        root     你的dist文件存放路径;
-        index  index.html index.htm;
-    }
-}</code></pre><p>重启nginx，以后每次修改配置文件都要重启才能生效</p>
-<pre><code>service nginx restart </code></pre><p>现在访问你的服务器ip或域名，就能看到你的项目，恭喜！</p>
+        <h1 id="前言-没什么用别看了"><a href="#前言-没什么用别看了" class="headerlink" title="前言(没什么用别看了)"></a>前言(没什么用别看了)</h1><p>所谓生命周期，就是vue实例从创建到销毁所经历的一系列过程，掌握生命周期能帮我们更好的了解vue的设计思想，也更方便debug。</p>
+<p>vue为我们提供了一系列钩子函数，方便我们在各阶段进行操作，本文也先从这些钩子函数说起。</p>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>我们创建一对父子组件，并通过观察子组件的创建过程，来了解生命周期的变化。</p>
+<p>父组件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span>&gt;</span>我是父组件<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show=true"</span>&gt;</span>点我创建子组件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show=false"</span>&gt;</span>点我销毁子组件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">import</span> child <span class="keyword">from</span> <span class="string">"@/components/child"</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">        name: <span class="string">'App'</span>,</span></span><br><span class="line">        data() &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">                show: <span class="literal">false</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components: &#123;</span><br><span class="line">            child</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#app</span>&#123;</span></span><br><span class="line">        text-align: center;</span><br><span class="line">        background-color: aquamarine;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>子组件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"background-color: #6495ed"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span>&gt;</span>我是子组件<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;year&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"changeTime"</span>&gt;</span>时光机<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">        name: <span class="string">"child"</span>,</span></span><br><span class="line">        data() &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">                year: <span class="string">'现在是2020年'</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line"><span class="actionscript">        props:[<span class="string">'proptest'</span>],</span></span><br><span class="line">        methods: &#123;</span><br><span class="line">            changeTime() &#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">this</span>.year = <span class="string">'大人，时代变了'</span></span></span><br><span class="line">            &#125;,</span><br><span class="line">            methodsAvailable()&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        computed:&#123;</span><br><span class="line">          time()&#123;</span><br><span class="line"><span class="javascript">              <span class="keyword">return</span> <span class="built_in">Date</span>.now()</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        beforeCreate() &#123;</span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------start-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'当前是beforeCreate'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'this'</span>,<span class="keyword">this</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'prop'</span>, <span class="keyword">this</span>.$props)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'watch'</span>,<span class="keyword">this</span>._watchers)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'methods'</span>, <span class="keyword">this</span>.methodsAvailable)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'computed'</span>, <span class="keyword">this</span>.time)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'year'</span>, <span class="keyword">this</span>.year)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------end-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">''</span>)</span></span><br><span class="line">        &#125;,</span><br><span class="line">        created() &#123;</span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------start-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'当前是created'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'prop'</span>, <span class="keyword">this</span>.$props)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'watch'</span>,<span class="keyword">this</span>._watchers)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'methods'</span>, <span class="keyword">this</span>.methodsAvailable)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'computed'</span>, <span class="keyword">this</span>.time)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'year'</span>, <span class="keyword">this</span>.year)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------end-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">''</span>)</span></span><br><span class="line">        &#125;,</span><br><span class="line">        beforeMount() &#123;</span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------start-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'当前是beforeMount'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'year'</span>, <span class="keyword">this</span>.year)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------end-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">''</span>)</span></span><br><span class="line">        &#125;,</span><br><span class="line">        mounted() &#123;</span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------start-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'当前是mounted'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'year'</span>, <span class="keyword">this</span>.year)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------end-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">''</span>)</span></span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        beforeUpdate() &#123;</span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------start-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'当前是beforeUpdate'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'year'</span>, <span class="keyword">this</span>.year)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------end-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">''</span>)</span></span><br><span class="line">        &#125;,</span><br><span class="line">        updated() &#123;</span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------start-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'当前是updated'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'year'</span>, <span class="keyword">this</span>.year)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------end-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">''</span>)</span></span><br><span class="line">        &#125;,</span><br><span class="line">        beforeDestroy() &#123;</span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------start-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'当前是beforeDestroy'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'year'</span>, <span class="keyword">this</span>.year)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------end-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">''</span>)</span></span><br><span class="line">        &#125;,</span><br><span class="line">        destroyed() &#123;</span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------start-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'当前是destroyed'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'year'</span>, <span class="keyword">this</span>.year)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'------------end-------------'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">''</span>)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>代码运行后浏览器显示如下</p>
+<p><img src="https://s1.ax1x.com/2020/09/13/wBFJnU.png" alt="wBFJnU.png"></p>
+<h1 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h1><p> 点击创建子组件按钮，观察控制台打印的信息</p>
+<h2 id="beforeCreate"><a href="#beforeCreate" class="headerlink" title="beforeCreate"></a>beforeCreate</h2><p><img src="https://s1.ax1x.com/2020/09/13/w0XygH.png" alt="w0XygH.png"></p>
+<p>这一阶段，this绑定到了当前实例，但是组件还没有绑定属性，el,data,prop等都处于undefined状态</p>
+<h2 id="created"><a href="#created" class="headerlink" title="created"></a>created</h2><p><img src="https://s1.ax1x.com/2020/09/13/w0j9xJ.png" alt="w0j9xJ.png"></p>
+<p>此时data,prop都已绑定，watch开始侦听，computed计算属性生效，methods中的方法已经可以调用。然而，挂载阶段还没开始，$el目前尚不可用</p>
+<h2 id="beforeMount"><a href="#beforeMount" class="headerlink" title="beforeMount"></a>beforeMount</h2><p><img src="https://s1.ax1x.com/2020/09/13/w0v9Ff.png" alt="w0v9Ff.png"></p>
+<p>准备开始挂载，相关的 render 函数首次被调用，此时$el仍是不可用。至于什么是render函数，可以参考官方这个例子 <a href="https://cn.vuejs.org/v2/guide/render-function.html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/render-function.html</a></p>
+<h2 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h2><p><img src="https://s1.ax1x.com/2020/09/13/w0xFN6.png" alt="w0xFN6.png"></p>
+<p>挂载完成，此时$el已经可用。页面显示如下</p>
+<p><img src="https://s1.ax1x.com/2020/09/13/wBFA6f.png" alt="wBFA6f.png"></p>
+<p>以上几个钩子函数中，created和mounted估计是平时用的最多的，created中可以进行加入数据的初始化逻辑，但是此时还不能操作dom节点。mounted中已经可以操作dom节点，而且eventbus监听一般也放在mounted中。</p>
+<p>注意：如果child组件中还有子组件，那么在child中如果想操作子组件的dom,需要将代码写在nextTick中</p>
+<p>那么当data中的数据更新时，又会发生什么呢？我们点击<code>时光机</code>按钮</p>
+<h2 id="beforeUpdate"><a href="#beforeUpdate" class="headerlink" title="beforeUpdate"></a>beforeUpdate</h2><p><img src="https://s1.ax1x.com/2020/09/13/wBp9Bj.png" alt="wBp9Bj.png"></p>
+<p>可以看到此时data中的值已经改变，但是$el仍未改变。</p>
+<h2 id="updated"><a href="#updated" class="headerlink" title="updated"></a>updated</h2><p><img src="https://s1.ax1x.com/2020/09/13/wBpECV.png" alt="wBpECV.png"></p>
+<p>此时$el的也已经更新。</p>
+<p>从官方文档中也可以看出beforeUpdate发生在虚拟DOM重新渲染和打补丁之前，所以个人理解beforeUpdate也许叫beforeDOMUpdate更形象。</p>
+<p><img src="https://s1.ax1x.com/2020/09/13/wBplU1.png" alt="wBplU1.png"></p>
+<p>最后，我们点击<code>销毁</code>按钮</p>
+<h2 id="beforeDestroy"><a href="#beforeDestroy" class="headerlink" title="beforeDestroy"></a>beforeDestroy</h2><p><img src="https://s1.ax1x.com/2020/09/13/wBiIw4.png" alt="wBiIw4.png"></p>
+<p>此时实例依然完全可用，各属性都可调用</p>
+<h2 id="destroyed"><a href="#destroyed" class="headerlink" title="destroyed"></a>destroyed</h2><p><img src="https://s1.ax1x.com/2020/09/13/wBE7DK.png" alt="wBE7DK.png"></p>
+<p>此时实例已经销毁。清理了与其它实例的连接，解绑它的全部指令及事件监听器。</p>
+<p>但是vm.$destroyed()并不会清除浏览器上的dom。所以更推荐在父组件中直接通过 v-if 来控制子组件的销毁。</p>
+<p>此时虽然有打印值，但是可以看到watch实际上已经是非激活状态，此时再点击界面上的<code>时光机</code>按钮,页面也不再变化。</p>
+<p>自此，vue生命周期过程已经全部介绍完了，如果发现文中有错误，欢迎交流。</p>
 
       
 
@@ -210,7 +230,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">部署</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-vue</a>
         		</li>
       		
 		</ul>
@@ -222,7 +242,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/前端//" class="article-tag-list-link color4">-前端</a>
         		</li>
       		
 		</ul>
@@ -277,7 +297,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.eziozhao.com/article/4f35d1fd.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.eziozhao.com/article/undefined.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,18 +311,9 @@
   
 <nav id="article-nav">
   
-    <a href="/article/6867333c.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Springboot项目中Redis的简单使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/article/c783d70.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">使用zerotier配置moon结点优化使用体验</div>
+    <a href="/article/c1e8b599.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手把手教你在vue项目中使用tinymce富文本组件</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -348,7 +359,7 @@ if(true){
   	repo: 'gitalk',
   	owner: 'eziozhao',
   	admin: ['eziozhao'],
-  	id: 'Sun Apr 12 2020 20:22:32 GMT+0800',
+  	id: 'Sun Sep 13 2020 16:59:41 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
