@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /tags/
+Disallow: /archives/
+Disallow: /categories/
+Disallow: /about/
+
+Sitemap: https://www.eziozhao.com/sitemap.xml

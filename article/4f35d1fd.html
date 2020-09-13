@@ -8,18 +8,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.eziozhao.com">
-  <title>SpringBoot使用Swagger生成API文档 | EzioZhao</title>
+  <title>vue项目部署到centos7服务器 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介Swagger是一种REST APIs的简单但强大的表示方式，标准的，语言无关，这种表示方式不但人可读，而且机器可读。可以作为REST APIs的交互式文档，也可以作为REST APIs的形式化的接口描述，生成客户端和服务端的代码。 使用引入依赖12345678910&lt;dependency&gt;	&lt;groupId&gt;io.springfox&lt;&#x2F;groupId&gt;	&amp;">
+  <meta name="description" content="##项目build生成静态文件首先将写好的vue项目打包 npm run build打包后可以看到项目中多出一个dist文件夹，其中包含了一个static文件夹和index.html页面##将dist文件上传到服务器使用xshell连接服务器，进入你想要存放的目录，本文以&#x2F;usr&#x2F;share为例 cd &#x2F;usr&#x2F;share在当前目录下输入rz命令，选择压缩后的dist文件，上传 如果提示comma">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot使用Swagger生成API文档">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;2020&#x2F;04&#x2F;12&#x2F;SpringBoot%E4%BD%BF%E7%94%A8Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3&#x2F;index.html">
+<meta property="og:title" content="vue项目部署到centos7服务器">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;article&#x2F;4f35d1fd.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="简介Swagger是一种REST APIs的简单但强大的表示方式，标准的，语言无关，这种表示方式不但人可读，而且机器可读。可以作为REST APIs的交互式文档，也可以作为REST APIs的形式化的接口描述，生成客户端和服务端的代码。 使用引入依赖12345678910&lt;dependency&gt;	&lt;groupId&gt;io.springfox&lt;&#x2F;groupId&gt;	&amp;">
+<meta property="og:description" content="##项目build生成静态文件首先将写好的vue项目打包 npm run build打包后可以看到项目中多出一个dist文件夹，其中包含了一个static文件夹和index.html页面##将dist文件上传到服务器使用xshell连接服务器，进入你想要存放的目录，本文以&#x2F;usr&#x2F;share为例 cd &#x2F;usr&#x2F;share在当前目录下输入rz命令，选择压缩后的dist文件，上传 如果提示comma">
 <meta property="article:published_time" content="2020-04-12T12:22:32.000Z">
-<meta property="article:modified_time" content="2020-06-25T03:37:38.497Z">
+<meta property="article:modified_time" content="2020-06-25T03:37:38.498Z">
 <meta property="article:author" content="Ezio Zhao">
-<meta property="article:tag" content="springboot">
+<meta property="article:tag" content="部署">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
@@ -142,14 +142,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-SpringBoot使用Swagger生成API文档" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-vue项目部署到centos7服务器" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      SpringBoot使用Swagger生成API文档
+      vue项目部署到centos7服务器
     </h1>
   
 
@@ -160,7 +160,7 @@
           <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
     </span>
 
-<a href="/2020/04/12/SpringBoot%E4%BD%BF%E7%94%A8Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3/" class="archive-article-date">
+<a href="/article/4f35d1fd.html" class="archive-article-date">
   	<time datetime="2020-04-12T12:22:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
 </a>
         
@@ -168,20 +168,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Swagger是一种REST APIs的简单但强大的表示方式，标准的，语言无关，这种表示方式不但人可读，而且机器可读。可以作为REST APIs的交互式文档，也可以作为REST APIs的形式化的接口描述，生成客户端和服务端的代码。</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="创建配置类"><a href="#创建配置类" class="headerlink" title="创建配置类"></a>创建配置类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.PathSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.ApiInfo;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spi.DocumentationType;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spring.web.plugins.Docket;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger</span>2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swagger2Config</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">createRestApi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .apiInfo(apiInfo())</span><br><span class="line">                .select()</span><br><span class="line">                <span class="comment">//为当前包下controller生成API文档</span></span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(<span class="string">"com.macro.mall.tiny.controller"</span>))</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">"SwaggerUI演示"</span>)</span><br><span class="line">                .description(<span class="string">"myblog"</span>)</span><br><span class="line">                .contact(<span class="string">"ezio"</span>)</span><br><span class="line">                .version(<span class="string">"1.0"</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="在Controller层中添加相应注解"><a href="#在Controller层中添加相应注解" class="headerlink" title="在Controller层中添加相应注解"></a>在Controller层中添加相应注解</h3><ul>
-<li>@Api 修饰Controller,在文档中显示相应tags</li>
-<li>@ApiImplicitParam 修饰请求参数，添加参数描述信息</li>
-<li>@ApiOperation 修饰请求的方法，生成方法对应的文档<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Api</span>(tags = <span class="string">"PostBlogController"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"api/blog/"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PostBlogController</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> PostBlogService postBlogService;	</span><br><span class="line">	<span class="meta">@ApiOperation</span>(<span class="string">"新增博客"</span>)</span><br><span class="line">	<span class="meta">@ApiImplicitParam</span>(name = <span class="string">"postVO"</span>, value = <span class="string">"新增博客VO"</span>, required = <span class="keyword">true</span>, dataType = <span class="string">"PostVO"</span>)</span><br><span class="line">	<span class="meta">@PostMapping</span>(<span class="string">"add"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ServerResponse <span class="title">blogAdd</span><span class="params">(@Valid @RequestBody PostVO postVO, BindingResult errors)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (errors.hasErrors()) &#123;</span><br><span class="line">			<span class="comment">//异常处理</span></span><br><span class="line">			List&lt;String&gt; errorList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">			errors.getAllErrors().stream().forEach(error -&gt; errorList.add(error.getDefaultMessage()));</span><br><span class="line">			<span class="keyword">return</span> ServerResponse.createByErrorMessage(errorList.get(<span class="number">0</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> postBlogService.addPost(postVO);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<p>运行项目，访问<a href="http://localhost:8866/swagger-ui.html" target="_blank" rel="noopener">http://localhost:8080/swagger-ui.html</a>即可</p>
+        <p>##项目build生成静态文件<br>首先将写好的vue项目打包</p>
+<pre><code>npm run build</code></pre><p>打包后可以看到项目中多出一个<em>dist</em>文件夹，其中包含了一个<em>static</em>文件夹和index.html页面<br>##将dist文件上传到服务器<br>使用xshell连接服务器，进入你想要存放的目录，本文以/usr/share为例</p>
+<pre><code>cd /usr/share</code></pre><p>在当前目录下输入rz命令，选择压缩后的dist文件，上传</p>
+<p>如果提示command not found，则需要安装rz命令。先切换到root用户，输入以下命令</p>
+<pre><code>yum -y install lrzsz</code></pre><p>安装后就可以正常使用了<br>##服务器安装配置nginx</p>
+<blockquote>
+<p>Nginx是异步框架的网页服务器，也可以用作反向代理、负载平衡器和HTTP缓存。——维基百科</p>
+</blockquote>
+<p>###安装<br>因为yum中没有nginx 所以通过以下命令将nginx加入</p>
+<pre><code>rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</code></pre><p>使用yum安装</p>
+<pre><code>yum install nginx</code></pre><p>查看版本，验证是否安装成功</p>
+<pre><code>nginx -v</code></pre><p>启动nginx</p>
+<pre><code>service nginx start</code></pre><p>现在，在浏览器中输入服务器的公网ip，就可以看到nginx页面了<br>###修改配置文件<br>在服务器中打开nginx配置文件，本文路径在<em>/etc/</em>下</p>
+<pre><code>vim /etc/nginx/nginx.conf</code></pre><p>打开的配置文件修改对应项</p>
+<pre><code> server {
+    listen       80;
+    listen       [::]:80;
+    server_name  你的服务器绑定的域名;
+    root         你的dist文件存放路径;
+    location / {
+        root     你的dist文件存放路径;
+        index  index.html index.htm;
+    }
+}</code></pre><p>重启nginx，以后每次修改配置文件都要重启才能生效</p>
+<pre><code>service nginx restart </code></pre><p>现在访问你的服务器ip或域名，就能看到你的项目，恭喜！</p>
 
       
 
@@ -195,7 +206,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">部署</a>
         		</li>
       		
 		</ul>
@@ -207,7 +218,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
+        			<a href="/categories/运维//" class="article-tag-list-link color3">运维</a>
         		</li>
       		
 		</ul>
@@ -262,7 +273,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.eziozhao.com/2020/04/12/SpringBoot%E4%BD%BF%E7%94%A8Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.eziozhao.com/article/4f35d1fd.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -276,18 +287,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/12/%E5%91%A8%E6%9C%AB%E6%80%BB%E7%BB%9320-4-12/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/article/6867333c.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          周末总结20/4/12
+          Springboot项目中Redis的简单使用
         
       </div>
     </a>
   
   
-    <a href="/2020/04/12/Springboot%E9%A1%B9%E7%9B%AE%E4%B8%ADRedis%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Springboot项目中Redis的简单使用</div>
+    <a href="/article/c783d70.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用zerotier配置moon结点优化使用体验</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -452,15 +463,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">部署</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络应用</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">每周小结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
               </li>
              
               <li class="article-tag-list-item">
