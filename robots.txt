@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 Allow: /tags/
-
+Allow: /article/
 Disallow: /archives/
 Disallow: /categories/
 Disallow: /about/
