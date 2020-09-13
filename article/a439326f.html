@@ -10,12 +10,12 @@
   <link rel="dns-prefetch" href="https://www.eziozhao.com">
   <title>2020年还不懂vue生命周期？一文带你理解vue生命周期那些事 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言(没什么用别看了)所谓生命周期，就是vue实例从创建到销毁所经历的一系列过程，掌握生命周期能帮我们更好的了解vue的设计思想，也更方便debug。 vue为我们提供了一系列钩子函数，方便我们在各阶段进行操作，本文也先从这些钩子函数说起。 Demo我们创建一对父子组件，并通过观察子组件的创建过程，来了解生命周期的变化。 父组件 1234567891011121314151617181920212">
+  <meta name="description" content="前言所谓生命周期，就是vue实例从创建到销毁所经历的一系列过程，掌握生命周期能帮我们更好的了解vue的设计思想，也更方便debug。 vue为我们提供了一系列钩子函数，方便我们在各阶段进行操作，本文也先从这些钩子函数说起。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2020年还不懂vue生命周期？一文带你理解vue生命周期那些事">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;article&#x2F;undefined.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;article&#x2F;a439326f.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="前言(没什么用别看了)所谓生命周期，就是vue实例从创建到销毁所经历的一系列过程，掌握生命周期能帮我们更好的了解vue的设计思想，也更方便debug。 vue为我们提供了一系列钩子函数，方便我们在各阶段进行操作，本文也先从这些钩子函数说起。 Demo我们创建一对父子组件，并通过观察子组件的创建过程，来了解生命周期的变化。 父组件 1234567891011121314151617181920212">
+<meta property="og:description" content="前言所谓生命周期，就是vue实例从创建到销毁所经历的一系列过程，掌握生命周期能帮我们更好的了解vue的设计思想，也更方便debug。 vue为我们提供了一系列钩子函数，方便我们在各阶段进行操作，本文也先从这些钩子函数说起。">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBFJnU.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;w0XygH.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;w0j9xJ.png">
@@ -28,7 +28,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBiIw4.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;09&#x2F;13&#x2F;wBE7DK.png">
 <meta property="article:published_time" content="2020-09-13T15:18:56.000Z">
-<meta property="article:modified_time" content="2020-09-13T15:19:56.672Z">
+<meta property="article:modified_time" content="2020-09-13T15:41:28.316Z">
 <meta property="article:author" content="Ezio Zhao">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
@@ -172,7 +172,7 @@
           <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
     </span>
 
-<a href="/article/undefined.html" class="archive-article-date">
+<a href="/article/a439326f.html" class="archive-article-date">
   	<time datetime="2020-09-13T15:18:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-13</time>
 </a>
         
@@ -180,8 +180,9 @@
     
     <div class="article-entry" itemprop="articleBody">
 	  
-        <h1 id="前言-没什么用别看了"><a href="#前言-没什么用别看了" class="headerlink" title="前言(没什么用别看了)"></a>前言(没什么用别看了)</h1><p>所谓生命周期，就是vue实例从创建到销毁所经历的一系列过程，掌握生命周期能帮我们更好的了解vue的设计思想，也更方便debug。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓生命周期，就是vue实例从创建到销毁所经历的一系列过程，掌握生命周期能帮我们更好的了解vue的设计思想，也更方便debug。</p>
 <p>vue为我们提供了一系列钩子函数，方便我们在各阶段进行操作，本文也先从这些钩子函数说起。</p>
+<a id="more"></a>
 <h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>我们创建一对父子组件，并通过观察子组件的创建过程，来了解生命周期的变化。</p>
 <p>父组件</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span>&gt;</span>我是父组件<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show=true"</span>&gt;</span>点我创建子组件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show=false"</span>&gt;</span>点我销毁子组件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">import</span> child <span class="keyword">from</span> <span class="string">"@/components/child"</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">        name: <span class="string">'App'</span>,</span></span><br><span class="line">        data() &#123;</span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">                show: <span class="literal">false</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components: &#123;</span><br><span class="line">            child</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#app</span>&#123;</span></span><br><span class="line">        text-align: center;</span><br><span class="line">        background-color: aquamarine;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -286,7 +287,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.eziozhao.com/article/undefined.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.eziozhao.com/article/a439326f.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -459,11 +460,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络应用</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,11 +476,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络应用</a>
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
               </li>
             
             <div class="clearfix"></div>
