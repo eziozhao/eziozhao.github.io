@@ -1,10 +1,11 @@
 ---
 title: 手把手教你在vue项目中使用tinymce富文本组件
-date: 2020-09-12 12:30:04
 tags:
-- 富文本
-categories:  
-- 前端
+  - 富文本
+categories:
+  - 前端
+abbrlink: c1e8b599
+date: 2020-09-12 12:30:04
 ---
 ## 安装
 

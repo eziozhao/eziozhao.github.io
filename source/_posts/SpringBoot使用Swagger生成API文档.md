@@ -1,10 +1,11 @@
 ---
 title: SpringBoot使用Swagger生成API文档
-date: 2020-04-12 20:22:32
 tags:
-- springboot
+  - springboot
 category:
-- 后端
+  - 后端
+abbrlink: ef3b9f6e
+date: 2020-04-12 20:22:32
 ---
 ## 简介
 Swagger是一种REST APIs的简单但强大的表示方式，标准的，语言无关，这种表示方式不但人可读，而且机器可读。可以作为REST APIs的交互式文档，也可以作为REST APIs的形式化的接口描述，生成客户端和服务端的代码。

@@ -1,10 +1,11 @@
 ---
 title: vue项目部署到centos7服务器
-date: 2020-04-12 20:22:32
 tags:
-- 部署
+  - 部署
 category:
-- 运维
+  - 运维
+abbrlink: 4f35d1fd
+date: 2020-04-12 20:22:32
 ---
 ##项目build生成静态文件
 首先将写好的vue项目打包

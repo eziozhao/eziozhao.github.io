@@ -1,10 +1,11 @@
 ---
 title: Springboot项目中Redis的简单使用
-date: 2020-04-12 20:22:32
 tags:
-- redis
+  - redis
 category:
-- 后端
+  - 后端
+abbrlink: 6867333c
+date: 2020-04-12 20:22:32
 ---
 ## 简介
 > Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。——维基百科

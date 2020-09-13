@@ -1,10 +1,11 @@
 ---
 title: 使用zerotier配置moon结点优化使用体验
+tags:
+  - 网络应用
+categories:
+  - 技术分享
+abbrlink: c783d70
 date: 2020-01-03 17:02:16
-tags: 
-- 网络应用   
-categories:  
-- 技术分享
 ---
 # zerotier介绍
 这是一款能够帮助你轻松实现虚拟局域网的软件。通过它，你可以将100台设备(免费版账号)加入自己创建的虚拟局域网。且该软件支持支持 Windows、macOS、Linux 三大桌面平台，iOS、Android 两大移动平台。[官网地址](https://www.zerotier.com/)

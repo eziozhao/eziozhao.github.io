@@ -13,13 +13,18 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://www.eziozhao.com
 root: /
-permalink: :year/:month/:day/:title/
+permalink: article/:abbrlink.html
+abbrlink:
+  alg: crc32  # 算法
+  rep: hex    # 进制
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing index.html from permalinks
 
+sitemap:
+  path: sitemap.xml
 # Directory
 source_dir: source
 public_dir: public

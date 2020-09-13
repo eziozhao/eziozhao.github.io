@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /tags/
+Allow: /article/
+Disallow: /archives/
+Disallow: /categories/
+Disallow: /about/
+Disallow: /fonts/
+Disallow: /img/
+
+Sitemap: https://www.eziozhao.com/sitemap.xml
