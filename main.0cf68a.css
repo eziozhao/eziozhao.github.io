@@ -951,7 +951,6 @@ html {
 }
 
 .left-col #header {
-  color: #fff;
   text-shadow: 3px 3px 3px rgba(0, 0, 0, .6);
   width: 100%;
   height: 300px;
@@ -960,6 +959,7 @@ html {
 }
 
 .left-col #header a {
+  color: #fff;
 }
 
 .left-col #header a:hover {
@@ -967,6 +967,7 @@ html {
 }
 
 .left-col #header .header-subtitle {
+  color: #fff;
   text-align: center;
   font-size: 14px;
   line-height: 25px;
