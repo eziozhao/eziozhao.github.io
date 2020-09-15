@@ -44,14 +44,14 @@
   </url>
   
   <url>
-    <loc>https://www.eziozhao.com/tags/index.html</loc>
+    <loc>https://www.eziozhao.com/categories/index.html</loc>
     
     <lastmod>2020-06-25</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.eziozhao.com/categories/index.html</loc>
+    <loc>https://www.eziozhao.com/tags/index.html</loc>
     
     <lastmod>2020-06-25</lastmod>
     
@@ -81,13 +81,6 @@
 
   
   <url>
-    <loc>https://www.eziozhao.com/tags/vue/</loc>
-    <lastmod>2020-09-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.eziozhao.com/tags/springboot/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
@@ -96,6 +89,13 @@
   
   <url>
     <loc>https://www.eziozhao.com/tags/redis/</loc>
+    <lastmod>2020-09-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.eziozhao.com/tags/vue/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
