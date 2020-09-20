@@ -81,13 +81,6 @@
 
   
   <url>
-    <loc>https://www.eziozhao.com/tags/springboot/</loc>
-    <lastmod>2020-09-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.eziozhao.com/tags/vue/</loc>
     <lastmod>2020-09-20</lastmod>
     <changefreq>daily</changefreq>
@@ -95,7 +88,7 @@
   </url>
   
   <url>
-    <loc>https://www.eziozhao.com/tags/%E9%83%A8%E7%BD%B2/</loc>
+    <loc>https://www.eziozhao.com/tags/springboot/</loc>
     <lastmod>2020-09-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -109,7 +102,7 @@
   </url>
   
   <url>
-    <loc>https://www.eziozhao.com/tags/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8/</loc>
+    <loc>https://www.eziozhao.com/tags/%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2020-09-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -117,6 +110,13 @@
   
   <url>
     <loc>https://www.eziozhao.com/tags/%E5%AF%8C%E6%96%87%E6%9C%AC/</loc>
+    <lastmod>2020-09-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.eziozhao.com/tags/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8/</loc>
     <lastmod>2020-09-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -139,14 +139,14 @@
   </url>
   
   <url>
-    <loc>https://www.eziozhao.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/</loc>
+    <loc>https://www.eziozhao.com/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2020-09-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.eziozhao.com/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <loc>https://www.eziozhao.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/</loc>
     <lastmod>2020-09-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
