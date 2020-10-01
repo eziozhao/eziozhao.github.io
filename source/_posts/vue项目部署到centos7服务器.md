@@ -3,12 +3,13 @@ title: vue项目部署到centos7服务器
 tags:
   - 部署
 category:
-  - 运维
+  - linux
 abbrlink: 4f35d1fd
 date: 2020-04-12 20:22:32
 ---
-##项目build生成静态文件
+## 项目build生成静态文件
 首先将写好的vue项目打包
+<!--more-->
 
     npm run build
 
@@ -24,10 +25,10 @@ date: 2020-04-12 20:22:32
     yum -y install lrzsz
 
 安装后就可以正常使用了
-##服务器安装配置nginx
+## 服务器安装配置nginx
 > Nginx是异步框架的网页服务器，也可以用作反向代理、负载平衡器和HTTP缓存。——维基百科
 
-###安装
+### 安装
 因为yum中没有nginx 所以通过以下命令将nginx加入
 
      rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
@@ -41,7 +42,7 @@ date: 2020-04-12 20:22:32
 
     service nginx start
 现在，在浏览器中输入服务器的公网ip，就可以看到nginx页面了
-###修改配置文件
+### 修改配置文件
 在服务器中打开nginx配置文件，本文路径在*/etc/*下
 
     vim /etc/nginx/nginx.conf

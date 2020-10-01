@@ -1,11 +1,14 @@
 User-agent: *
 Allow: /
-Allow: /tags/
+Allow: /archives/
 Allow: /article/
-Disallow: /archives/
-Disallow: /categories/
-Disallow: /about/
+Allow: /categories/
+Allow: /tags/
+
 Disallow: /fonts/
 Disallow: /img/
+Disallow: /*.js
+Disallow: /*.css
+Disallow: /content.json
 
 Sitemap: https://www.eziozhao.com/sitemap.xml
