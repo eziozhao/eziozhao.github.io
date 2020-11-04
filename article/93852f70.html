@@ -12,15 +12,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.eziozhao.com">
-  <title>Tag: 部署 | EzioZhao</title>
+  <title>每日一题 20/11/04 57.插入区间 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="吉大材料本科毕业,北邮计算机研究生在读。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="EzioZhao">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;tags&#x2F;%E9%83%A8%E7%BD%B2&#x2F;index.html">
+  <meta name="description" content="题目给出一个无重叠的 ，按照区间起始端点排序的区间列表。 在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一题 20&#x2F;11&#x2F;04 57.插入区间">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;article&#x2F;93852f70.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="吉大材料本科毕业,北邮计算机研究生在读。">
+<meta property="og:description" content="题目给出一个无重叠的 ，按照区间起始端点排序的区间列表。 在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。">
+<meta property="article:published_time" content="2020-11-04T13:44:22.000Z">
+<meta property="article:modified_time" content="2020-11-04T13:55:01.862Z">
 <meta property="article:author" content="Ezio Zhao">
+<meta property="article:tag" content="每日一题">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
@@ -143,72 +147,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-每日一题-20-11-04" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/article/4f35d1fd.html" class="archive-article-date">
-  	<time datetime="2020-04-12T12:22:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/article/4f35d1fd.html">vue项目部署到centos7服务器</a>
+    <h1 class="article-title" itemprop="name">
+      每日一题 20/11/04 57.插入区间
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        
+    <!-- 不蒜子统计 -->
+    <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+          <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+    </span>
+
+<a href="/article/93852f70.html" class="archive-article-date">
+  	<time datetime="2020-11-04T13:44:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+	  
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给出一个无重叠的 ，按照区间起始端点排序的区间列表。</p>
+<p>在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。</p>
+<a id="more"></a>
+
+<p>示例</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="built_in">int</span>ervals = [[<span class="number">1</span>,<span class="number">3</span>],[<span class="number">6</span>,<span class="number">9</span>]], newInterval = [<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">输出：[[<span class="number">1</span>,<span class="number">5</span>],[<span class="number">6</span>,<span class="number">9</span>]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>给定一个区间<code>[a,b]</code>和若干个互不重合的区间<code>[Xi,Yi]</code></p>
+<ul>
+<li>如果<code>a&gt;Yi</code> 说明<code>[Xi,Yi]</code>一定位于区间<code>[a,b]</code>的左侧 且不重合</li>
+<li>如果<code>b&lt;Xi</code> 说明<code>[Xi,Yi]</code>一定位于区间<code>[a,b]</code>的右侧 且不重合</li>
+<li>如果<code>a&lt;Yi</code> 说明此时<code>[a,b]</code>和<code>[Xi,Yi]</code>一定存在重合部分 则应该取两个区间的并集 当作新的区间</li>
+</ul>
+<p>依照上述原则,先将newInterval左侧的区间放入结果集,然后处理有重合的部分，最后将newInterval右侧部分放入结果集</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[][] insert(<span class="keyword">int</span>[][] intervals, <span class="keyword">int</span>[] newInterval) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = intervals.length;</span><br><span class="line">        <span class="keyword">int</span>[][] ans = <span class="keyword">new</span> <span class="keyword">int</span>[len + <span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//找出所有位于newInterval之前的区间</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (intervals[i][<span class="number">1</span>] &lt; newInterval[<span class="number">0</span>]) &#123;</span><br><span class="line">                ans[index++] = intervals[i];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> j = index;</span><br><span class="line">        <span class="keyword">for</span> (; j &lt; len; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (intervals[j][<span class="number">0</span>] &lt;= newInterval[<span class="number">1</span>]) &#123;</span><br><span class="line">                newInterval[<span class="number">0</span>] = Math.min(intervals[j][<span class="number">0</span>], newInterval[<span class="number">0</span>]);</span><br><span class="line">                newInterval[<span class="number">1</span>] = Math.max(intervals[j][<span class="number">1</span>], newInterval[<span class="number">1</span>]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ans[index++] = newInterval;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = j; k &lt; len; k++) &#123;</span><br><span class="line">            ans[index++] = intervals[k];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Arrays.copyOf(ans, index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/eziozhao/leetcode/blob/main/leetcode/editor/cn/InsertInterval.java" target="_blank" rel="noopener">源码地址</a></p>
+
+      
+
+
+      
+          <!-- 《添加版权声明 -->
           
+              <!-- 《添加版权声明 -->
+
+
+<!-- #版权基础设定：0-关闭声明； 1-文章对应的md文件里有declare: true属性，才有版权声明； 2-所有文章均有版权声明 -->
+
+  <div class="declare">
+    <strong class="author">本文作者：</strong>
+    
+      Ezio Zhao
+    
+    <br>
+    <strong class="create-time">发布时间：</strong>
+    2020-11-04
+    <br>
+    <strong class="update-time">最后更新：</strong>
+    2020-11-04
+    <br>
+    <strong class="article-titles">本文标题：</strong>
+    <a href="https://www.eziozhao.com/article/93852f70.html" title="每日一题 20/11/04 57.插入区间" target="_blank">每日一题 20/11/04 57.插入区间</a>
+    <br>
+    <strong class="article-url">本文链接：</strong>
+    <a href="https://www.eziozhao.com/article/93852f70.html" title="每日一题 20/11/04 57.插入区间" target="_blank">https://www.eziozhao.com/article/93852f70.html</a>
+    <br>
+    <strong class="copyright">版权声明：</strong>
+    本作品采用
+    <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议">CC BY-NC-SA 4.0</a>
+    许可协议进行许可。转载请注明出处！
+    
+      <br>
+      <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"/></a>
+    
+  </div>
+
+<!-- 添加版权声明》 -->
+          
+          <!-- 添加版权声明》 -->
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">部署</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
 	</div>
 
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/article/b113f0c.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日一题 20/10/30 463.岛屿的周长</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'ff2070a2cd54acf99e43',
+  	clientSecret: '88520fd1d0244b4dc73127dd8053f755fd58e759',
+  	repo: 'gitalk',
+  	owner: 'eziozhao',
+  	admin: ['eziozhao'],
+  	id: 'Wed Nov 04 2020 21:44:22 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+  
+  
 
 
           </div>
@@ -242,9 +354,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
