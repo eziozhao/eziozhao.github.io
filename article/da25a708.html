@@ -12,22 +12,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.eziozhao.com">
-  <title>每日一题 20/10/30 463.岛屿的周长 | EzioZhao</title>
+  <title>每日一题 20/11/03 941.有效的山脉数组 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地 0 表示水域。 网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。">
+  <meta name="description" content="题目给定一个整数数组 A，如果它是有效的山脉数组就返回 true，否则返回 false。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一题 20&#x2F;10&#x2F;30 463.岛屿的周长">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;article&#x2F;b113f0c.html">
+<meta property="og:title" content="每日一题 20&#x2F;11&#x2F;03 941.有效的山脉数组">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;article&#x2F;da25a708.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="题目给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地 0 表示水域。 网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;10&#x2F;30&#x2F;Btdakj.png">
-<meta property="article:published_time" content="2020-10-30T07:49:41.000Z">
-<meta property="article:modified_time" content="2020-11-04T13:42:57.121Z">
+<meta property="og:description" content="题目给定一个整数数组 A，如果它是有效的山脉数组就返回 true，否则返回 false。">
+<meta property="article:published_time" content="2020-11-03T03:15:31.000Z">
+<meta property="article:modified_time" content="2020-11-05T12:13:32.632Z">
 <meta property="article:author" content="Ezio Zhao">
 <meta property="article:tag" content="每日一题">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;10&#x2F;30&#x2F;Btdakj.png">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
   
@@ -149,14 +147,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20-10-30-463-岛屿的周长" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-每日一题-20-11-03" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      每日一题 20/10/30 463.岛屿的周长
+      每日一题 20/11/03 941.有效的山脉数组
     </h1>
   
 
@@ -167,30 +165,44 @@
           <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
     </span>
 
-<a href="/article/b113f0c.html" class="archive-article-date">
-  	<time datetime="2020-10-30T07:49:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+<a href="/article/da25a708.html" class="archive-article-date">
+  	<time datetime="2020-11-03T03:15:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
 	  
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地 0 表示水域。</p>
-<p>网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 <code>A</code>，如果它是有效的山脉数组就返回 <code>true</code>，否则返回 <code>false</code>。</p>
 <a id="more"></a>
 
-<p>岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。</p>
-<p><a href="https://imgchr.com/i/Btdakj" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/30/Btdakj.png" alt="Btdakj.png"></a></p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>由于每块陆地有四条边,所以本题实际是求,每个正方形中有几条边可以纳入最终的周长之中。</p>
-<p>据此,可将所有的陆地分为两类</p>
-<ol>
-<li>位于矩形边界处,此时其与边界重合的那些边一定可以纳入最终的周长</li>
-<li>位于矩形内部,判断其四周哪个方向没有陆地,将这个方向的边纳入周长</li>
-</ol>
-<p>要注意的是,对于第1种情况,还需要判断该陆地的内侧是否为水域,如果是,则对应的内侧边也要纳入周长</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].length; j++)&#123;</span><br><span class="line">								<span class="comment">//判断每个正方形的4条边是否能纳入周长</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j] == <span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(i == <span class="number">0</span> || grid[i-<span class="number">1</span>][j] == <span class="number">0</span>)&#123;</span><br><span class="line">                        ans++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(j == <span class="number">0</span> || grid[i][j-<span class="number">1</span>] == <span class="number">0</span>)&#123;</span><br><span class="line">                        ans++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(i == grid.length-<span class="number">1</span> || grid[i+<span class="number">1</span>][j] == <span class="number">0</span>)&#123;</span><br><span class="line">                        ans++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(j == grid[<span class="number">0</span>].length-<span class="number">1</span> || grid[i][j+<span class="number">1</span>] == <span class="number">0</span>)&#123;</span><br><span class="line">                        ans++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>让我们回顾一下，如果 A 满足下述条件，那么它是一个山脉数组：</p>
+<ul>
+<li><code>A.length &gt;= 3</code></li>
+<li>在 <code>0 &lt; i &lt; A.length - 1</code> 条件下，存在 <code>i</code> 使得：<ul>
+<li><code>A[0] &lt; A[1] &lt; ... A[i-1] &lt; A[i]</code></li>
+<li><code>A[i] &gt; A[i+1] &gt; ... &gt; A[A.length - 1]</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">输出：<span class="literal">false</span></span><br></pre></td></tr></table></figure>
 
-<p><a href="https://github.com/eziozhao/leetcode/blob/main/leetcode/editor/cn/IslandPerimeter.java" target="_blank" rel="noopener">源码地址</a></p>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[<span class="number">3</span>,<span class="number">5</span>,<span class="number">5</span>]</span><br><span class="line">输出：<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出：<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ol>
+<li><code>0 &lt;= A.length &lt;= 10000</code></li>
+<li><code>0 &lt;= A[i] &lt;= 10000</code></li>
+</ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先判断数组前半段是否满足<strong>严格升序</strong> 定位到分割点时跳出循环 判断数组后半段是否<strong>严格降序</strong></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">validMountainArray</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">if</span> (A.length &lt; <span class="number">3</span>) &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">           <span class="keyword">while</span> (index + <span class="number">1</span> &lt; A.length &amp;&amp; A[index] &lt; A[index + <span class="number">1</span>]) &#123;</span><br><span class="line">               index++;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">//完全升序或完全降序</span></span><br><span class="line">           <span class="keyword">if</span> (index == <span class="number">0</span> || index == A.length - <span class="number">1</span>) &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">while</span> (index + <span class="number">1</span> &lt; A.length &amp;&amp; A[index] &gt; A[index + <span class="number">1</span>]) &#123;</span><br><span class="line">               index++;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> index == A.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/eziozhao/leetcode/blob/main/leetcode/editor/cn/ValidMountainArray.java" target="_blank" rel="noopener">源码地址</a></p>
 
       
 
@@ -210,16 +222,16 @@
     
     <br>
     <strong class="create-time">发布时间：</strong>
-    2020-10-30
+    2020-11-03
     <br>
     <strong class="update-time">最后更新：</strong>
-    2020-11-04
+    2020-11-05
     <br>
     <strong class="article-titles">本文标题：</strong>
-    <a href="https://www.eziozhao.com/article/b113f0c.html" title="每日一题 20/10/30 463.岛屿的周长" target="_blank">每日一题 20/10/30 463.岛屿的周长</a>
+    <a href="https://www.eziozhao.com/article/da25a708.html" title="每日一题 20/11/03 941.有效的山脉数组" target="_blank">每日一题 20/11/03 941.有效的山脉数组</a>
     <br>
     <strong class="article-url">本文链接：</strong>
-    <a href="https://www.eziozhao.com/article/b113f0c.html" title="每日一题 20/10/30 463.岛屿的周长" target="_blank">https://www.eziozhao.com/article/b113f0c.html</a>
+    <a href="https://www.eziozhao.com/article/da25a708.html" title="每日一题 20/11/03 941.有效的山脉数组" target="_blank">https://www.eziozhao.com/article/da25a708.html</a>
     <br>
     <strong class="copyright">版权声明：</strong>
     本作品采用
@@ -266,18 +278,18 @@
   
 <nav id="article-nav">
   
-    <a href="/article/dfd9e9ae.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/article/93852f70.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          每日一题 20/11/02 349.两个数组的交集
+          每日一题 20/11/04 57.插入区间
         
       </div>
     </a>
   
   
-    <a href="/article/77a51e02.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">每日一题 20/10/29 129.求根节点到叶子节点数字和</div>
+    <a href="/article/dfd9e9ae.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日一题 20/11/02 349.两个数组的交集</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -323,7 +335,7 @@ if(true){
   	repo: 'gitalk',
   	owner: 'eziozhao',
   	admin: ['eziozhao'],
-  	id: 'Fri Oct 30 2020 15:49:41 GMT+0800',
+  	id: 'Tue Nov 03 2020 11:15:31 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
