@@ -180,13 +180,13 @@
 </li>
 </ul>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[2,1]</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">输入：[2,1]<br>输出：false<br></code></pre></td></tr></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[3,5,5]</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">输入：[3,5,5]<br>输出：false<br></code></pre></td></tr></table></figure>
 
 <p><strong>示例 3：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">输出：true<br></code></pre></td></tr></table></figure>
 
 <p><strong>提示：</strong></p>
 <ol>
@@ -194,7 +194,7 @@
 <li><code>0 &lt;= A[i] &lt;= 10000</code></li>
 </ol>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先判断数组前半段是否满足<strong>严格升序</strong> 定位到分割点时跳出循环 判断数组后半段是否<strong>严格降序</strong></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">validMountainArray</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">if</span> (A.length &lt; <span class="number">3</span>) &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">           <span class="keyword">while</span> (index + <span class="number">1</span> &lt; A.length &amp;&amp; A[index] &lt; A[index + <span class="number">1</span>]) &#123;</span><br><span class="line">               index++;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">//完全升序或完全降序</span></span><br><span class="line">           <span class="keyword">if</span> (index == <span class="number">0</span> || index == A.length - <span class="number">1</span>) &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">while</span> (index + <span class="number">1</span> &lt; A.length &amp;&amp; A[index] &gt; A[index + <span class="number">1</span>]) &#123;</span><br><span class="line">               index++;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> index == A.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>       <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">validMountainArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] A)</span> </span>&#123;<br>           <span class="hljs-keyword">if</span> (A.length &lt; <span class="hljs-number">3</span>) &#123;<br>               <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>           &#125;<br>           <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;<br>           <span class="hljs-keyword">while</span> (index + <span class="hljs-number">1</span> &lt; A.length &amp;&amp; A[index] &lt; A[index + <span class="hljs-number">1</span>]) &#123;<br>               index++;<br>           &#125;<br>           <span class="hljs-comment">//完全升序或完全降序</span><br>           <span class="hljs-keyword">if</span> (index == <span class="hljs-number">0</span> || index == A.length - <span class="hljs-number">1</span>) &#123;<br>               <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>           &#125;<br>           <span class="hljs-keyword">while</span> (index + <span class="hljs-number">1</span> &lt; A.length &amp;&amp; A[index] &gt; A[index + <span class="hljs-number">1</span>]) &#123;<br>               index++;<br>           &#125;<br>           <span class="hljs-keyword">return</span> index == A.length - <span class="hljs-number">1</span>;<br><br>       &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
 
 <p><a href="https://github.com/eziozhao/leetcode/blob/main/leetcode/editor/cn/ValidMountainArray.java" target="_blank" rel="noopener">源码地址</a></p>
 
@@ -442,6 +442,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
@@ -450,15 +454,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络应用</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">富文本</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络应用</a>
               </li>
             
             <div class="clearfix"></div>
