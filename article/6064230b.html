@@ -11,18 +11,20 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://www.eziozhao.com">
-  <title>关于 | EzioZhao</title>
+  <link rel="dns-prefetch" href="https://eziozhao.com">
+  <title>每日一题 20/11/11 514.自由之路 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="It was the best of times,  it was the worst of times, it was the age of wisdom, it was the age of foolishness.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.eziozhao.com&#x2F;about&#x2F;index.html">
+  <meta name="description" content="题目电子游戏“辐射4”中，任务“通向自由”要求玩家到达名为“Freedom Trail Ring”的金属表盘，并使用表盘拼写特定关键词才能开门。 给定一个字符串 ring，表示刻在外环上的编码；给定另一个字符串 key，表示需要拼写的关键词。您需要算出能够拼写关键词中所有字符的最少步数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一题 20&#x2F;11&#x2F;11 514.自由之路">
+<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;article&#x2F;6064230b.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="It was the best of times,  it was the worst of times, it was the age of wisdom, it was the age of foolishness.">
-<meta property="article:published_time" content="2020-01-04T08:51:34.000Z">
-<meta property="article:modified_time" content="2020-06-25T03:37:38.500Z">
+<meta property="og:description" content="题目电子游戏“辐射4”中，任务“通向自由”要求玩家到达名为“Freedom Trail Ring”的金属表盘，并使用表盘拼写特定关键词才能开门。 给定一个字符串 ring，表示刻在外环上的编码；给定另一个字符串 key，表示需要拼写的关键词。您需要算出能够拼写关键词中所有字符的最少步数。">
+<meta property="article:published_time" content="2020-11-11T12:42:41.000Z">
+<meta property="article:modified_time" content="2020-11-20T14:29:36.715Z">
 <meta property="article:author" content="Ezio Zhao">
+<meta property="article:tag" content="每日一题">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
@@ -58,7 +60,7 @@
 		  <h1 class="header-author"><a href="/">Ezio Zhao</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">做一些想做,又能养活自己的事</p>
+		<p class="header-subtitle">分享知识，分享生活</p>
 		
 
 		<nav class="header-menu">
@@ -110,7 +112,7 @@
 			  <h1 class="header-author js-header-author">Ezio Zhao</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>做一些想做,又能养活自己的事<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>分享知识，分享生活<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -145,34 +147,66 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-每日一题-20-11-11-514-自由之路" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      关于
+      每日一题 20/11/11 514.自由之路
     </h1>
   
 
         
-        <a href="/about/index.html" class="archive-article-date">
-  	<time datetime="2020-01-04T08:51:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-04</time>
+        <a href="/article/6064230b.html" class="archive-article-date">
+  	<time datetime="2020-11-11T12:42:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
 	  
-        <br/>
-<br/>
-<br/>
-<center><font size=7>It was the best of times,</font></center>
-<br/>
-<center><font size=7>it was the worst of times,</font></center><br/>
-<center><font size=7>it was the age of wisdom,</font></center><br/>
-<center><font size=7>it was the age of foolishness.</font></center><br/>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>电子游戏“辐射4”中，任务“通向自由”要求玩家到达名为“Freedom Trail Ring”的金属表盘，并使用表盘拼写特定关键词才能开门。</p>
+<p>给定一个字符串 <strong>ring</strong>，表示刻在外环上的编码；给定另一个字符串 <strong>key</strong>，表示需要拼写的关键词。您需要算出能够拼写关键词中所有字符的<strong>最少</strong>步数。</p>
+<a id="more"></a>
+
+<p>最初，<strong>ring</strong> 的第一个字符与12:00方向对齐。您需要顺时针或逆时针旋转 ring 以使 <strong>key</strong> 的一个字符在 12:00 方向对齐，然后按下中心按钮，以此逐个拼写完 <strong>key</strong> 中的所有字符。</p>
+<p>旋转 <strong>ring</strong> 拼出 key 字符 <strong>key[i]</strong> 的阶段中：</p>
+<ol>
+<li>您可以将 <strong>ring</strong> 顺时针或逆时针旋转<strong>一个位置</strong>，计为1步。旋转的最终目的是将字符串 <strong>ring</strong> 的一个字符与 12:00 方向对齐，并且这个字符必须等于字符 <strong>key[i] 。</strong></li>
+<li>如果字符 <strong>key[i]</strong> 已经对齐到12:00方向，您需要按下中心按钮进行拼写，这也将算作 <strong>1 步</strong>。按完之后，您可以开始拼写 <strong>key</strong> 的下一个字符（下一阶段）, 直至完成所有拼写。</li>
+</ol>
+<p><strong>示例：</strong></p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入: ring = <span class="string">"godding"</span>, <span class="built_in">key</span> = <span class="string">"gd"</span></span><br><span class="line">输出: <span class="number">4</span></span><br><span class="line">解释:</span><br><span class="line"> 对于 <span class="built_in">key</span> 的第一个字符 <span class="string">'g'</span>，已经在正确的位置, 我们只需要<span class="number">1</span>步来拼写这个字符。 </span><br><span class="line"> 对于 <span class="built_in">key</span> 的第二个字符 <span class="string">'d'</span>，我们需要逆时针旋转 ring <span class="string">"godding"</span> <span class="number">2</span>步使它变成 <span class="string">"ddinggo"</span>。</span><br><span class="line"> 当然, 我们还需要<span class="number">1</span>步进行拼写。</span><br><span class="line"> 因此最终的输出是 <span class="number">4</span>。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ol>
+<li><strong>ring</strong> 和 <strong>key</strong> 的字符串长度取值范围均为 1 至 100；</li>
+<li>两个字符串中都只有小写字符，并且均可能存在重复字符；</li>
+<li>字符串 <strong>key</strong> 一定可以由字符串 <strong>ring</strong> 旋转拼出。</li>
+</ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>使用dp[i][j]表示当key的第 i 个字符由ring 的第 j 个字符旋转得到时，所需要的最小步数</li>
+<li>维护一个数组保存ring的每个字母对应的位置集合</li>
+<li>拼写key的第i个字母时 需要根据第 i-1 个字母时的状态推算</li>
+</ul>
+<h3 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h3><p><code>dp[i][j]=min(dp[i-1][k]+min(abs(j-k),n-abs(j-k))+1)</code></p>
+<p>其中，</p>
+<ul>
+<li>k代表key[i-1]所表示的字母在ring中的位置集合</li>
+<li>n代表ring的长度</li>
+<li>abs表示绝对值</li>
+<li>最后的加1代表按下button的那一步</li>
+</ul>
+<p>可以这样理解这个方程：</p>
+<p>因为key和ring中的字母都有可能重复，所以key的第i-1个字母在ring中可能有多个对应，同时每个对应需要的步数肯定是不一样的。</p>
+<p>dp[i-1][k]则表示了这些对应的步数。</p>
+<p>而由i-1到i的过程中，又对应了顺时针和逆时针两种选择，即（j-k)和n-(j-k)</p>
+<p>所以拼写第i个字母的最少步数就可以根据所有的拼写第i-1个字母的情况中的最少步数确定。</p>
+<p>最后的答案即为dp[len_key-1][i]中的最小值。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findRotateSteps</span><span class="params">(String ring, String key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> lenRing = ring.length(), lenKey = key.length();</span><br><span class="line">            List&lt;Integer&gt;[] pos = <span class="keyword">new</span> List[<span class="number">26</span>];</span><br><span class="line">            <span class="comment">//因为不知道key有多少个字母 而且key中字母也可能重复 所以选择常量级别的空间比较高效</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">                pos[i] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//保存ring的每个字母对应的位置集合</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenRing; i++) &#123;</span><br><span class="line">                pos[ring.charAt(i) - <span class="string">'a'</span>].add(i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//dp[i][j] 表示从前往后拼写出key的第 i个字符时</span></span><br><span class="line">            <span class="comment">// ring的第j个字符与 12:00方向对齐的最少步数（下标均从0开始）</span></span><br><span class="line">            <span class="comment">//其实对应的是ring的索引值加1 这里的1是最后按的一下按钮</span></span><br><span class="line">            <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[lenKey][lenRing];</span><br><span class="line">            <span class="comment">//将步数初始值设为无穷大</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenKey; i++) &#123;</span><br><span class="line">                Arrays.fill(dp[i], Integer.MAX_VALUE);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//状态转移方程涉及了(i-1) 所以这里先把i=0初始化</span></span><br><span class="line">            <span class="comment">// pos[key.charAt(0) - 'a']取出了key[0]这个字母在ring中对应的位置集合</span></span><br><span class="line">            <span class="comment">//之后初始化每一个位置需要移动的步数</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i : pos[key.charAt(<span class="number">0</span>) - <span class="string">'a'</span>]) &#123;</span><br><span class="line">                dp[<span class="number">0</span>][i] = Math.min(i, lenRing - i) + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//按照状态转移方程进行赋值</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; lenKey; i++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j : pos[key.charAt(i) - <span class="string">'a'</span>]) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> k : pos[key.charAt(i - <span class="number">1</span>) - <span class="string">'a'</span>]) &#123;</span><br><span class="line">                        dp[i][j] = Math.min(dp[i][j], dp[i - <span class="number">1</span>][k] + Math.min(Math.abs(j - k), lenRing - Math.abs(j - k)) + <span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> Arrays.stream(dp[lenKey - <span class="number">1</span>]).min().getAsInt();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
       
 
 
@@ -191,16 +225,16 @@
     
     <br>
     <strong class="create-time">发布时间：</strong>
-    2020-01-04
+    2020-11-11
     <br>
     <strong class="update-time">最后更新：</strong>
-    2020-06-25
+    2020-11-20
     <br>
     <strong class="article-titles">本文标题：</strong>
-    <a href="https://www.eziozhao.com/about/index.html" title="关于" target="_blank">关于</a>
+    <a href="https://eziozhao.com/article/6064230b.html" title="每日一题 20/11/11 514.自由之路" target="_blank">每日一题 20/11/11 514.自由之路</a>
     <br>
     <strong class="article-url">本文链接：</strong>
-    <a href="https://www.eziozhao.com/about/index.html" title="关于" target="_blank">https://www.eziozhao.com/about/index.html</a>
+    <a href="https://eziozhao.com/article/6064230b.html" title="每日一题 20/11/11 514.自由之路" target="_blank">https://eziozhao.com/article/6064230b.html</a>
     <br>
     <strong class="copyright">版权声明：</strong>
     本作品采用
@@ -219,6 +253,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -230,6 +279,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/article/420b386c.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          每日一题 20/11/12 922.按奇偶排序数组
+        
+      </div>
+    </a>
+  
+  
+    <a href="/article/4676a2c8.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日一题 20/11/10 31.下一个排列</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -270,7 +338,7 @@ if(true){
   	repo: 'gitalk',
   	owner: 'eziozhao',
   	admin: ['eziozhao'],
-  	id: 'Sat Jan 04 2020 16:51:34 GMT+0800',
+  	id: 'Wed Nov 11 2020 20:42:41 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
@@ -301,7 +369,7 @@ gitalk.render('gitalk-container')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

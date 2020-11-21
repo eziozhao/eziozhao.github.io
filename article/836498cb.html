@@ -12,15 +12,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://eziozhao.com">
-  <title>Archives: 2020/9 | EzioZhao</title>
+  <title>每日一题 20/11/18 134.加油站 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="EzioZhao">
-<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;archives&#x2F;2020&#x2F;09&#x2F;index.html">
+  <meta name="description" content="题目在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。 你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。 如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一题 20&#x2F;11&#x2F;18 134.加油站">
+<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;article&#x2F;836498cb.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="记录每天的进步">
+<meta property="og:description" content="题目在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。 你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。 如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。">
+<meta property="article:published_time" content="2020-11-18T07:08:50.000Z">
+<meta property="article:modified_time" content="2020-11-20T14:29:36.717Z">
 <meta property="article:author" content="Ezio Zhao">
+<meta property="article:tag" content="每日一题">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
@@ -143,113 +147,183 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-每日一题-20-11-18-134-加油站" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/article/a439326f.html" class="archive-article-date">
-  	<time datetime="2020-09-13T15:18:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/article/a439326f.html">2020年还不懂vue生命周期？一文带你理解vue生命周期那些事</a>
+    <h1 class="article-title" itemprop="name">
+      每日一题 20/11/18 134.加油站
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/article/836498cb.html" class="archive-article-date">
+  	<time datetime="2020-11-18T07:08:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+	  
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。</p>
+<p>你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。</p>
+<p>如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。</p>
+<a id="more"></a>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">gas  = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">cost = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">输出: <span class="number">3</span></span><br><span class="line"></span><br><span class="line">解释:</span><br><span class="line">从 <span class="number">3</span> 号加油站(索引为 <span class="number">3</span> 处)出发，可获得 <span class="number">4</span> 升汽油。此时油箱有 = <span class="number">0</span> + <span class="number">4</span> = <span class="number">4</span> 升汽油</span><br><span class="line">开往 <span class="number">4</span> 号加油站，此时油箱有 <span class="number">4</span> - <span class="number">1</span> + <span class="number">5</span> = <span class="number">8</span> 升汽油</span><br><span class="line">开往 <span class="number">0</span> 号加油站，此时油箱有 <span class="number">8</span> - <span class="number">2</span> + <span class="number">1</span> = <span class="number">7</span> 升汽油</span><br><span class="line">开往 <span class="number">1</span> 号加油站，此时油箱有 <span class="number">7</span> - <span class="number">3</span> + <span class="number">2</span> = <span class="number">6</span> 升汽油</span><br><span class="line">开往 <span class="number">2</span> 号加油站，此时油箱有 <span class="number">6</span> - <span class="number">4</span> + <span class="number">3</span> = <span class="number">5</span> 升汽油</span><br><span class="line">开往 <span class="number">3</span> 号加油站，你需要消耗 <span class="number">5</span> 升汽油，正好足够你返回到 <span class="number">3</span> 号加油站。</span><br><span class="line">因此，<span class="number">3</span> 可为起始索引。</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>参考自这位<a href="https://leetcode-cn.com/problems/gas-station/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--30/" target="_blank" rel="noopener">大佬</a></p>
+<ul>
+<li>从<code>i</code>号加油站出发 计算到达当前的<code>cur</code>加油站时能剩余的油量</li>
+<li>如果油量非负 说明还有继续前进的可能 </li>
+<li>如果油量为负 说明当前的<code>cur</code>已经是从<code>i</code>出发能达到的最远位置 下一次可以直接从<code>cur</code>的下一个位置前进</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">int</span> len = gas.length;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">               <span class="keyword">int</span> cur = i;</span><br><span class="line">               <span class="keyword">int</span> remain = gas[i];</span><br><span class="line">               <span class="keyword">while</span> (remain - cost[cur] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                   remain = remain - cost[cur] + gas[(cur + <span class="number">1</span>) % len];</span><br><span class="line">                   cur = (cur + <span class="number">1</span>) % len;</span><br><span class="line">                   <span class="keyword">if</span> (cur == i) &#123;</span><br><span class="line">                       <span class="keyword">return</span> i;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (cur &lt; i) &#123;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               i = cur;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+
+
+      
+          <!-- 《添加版权声明 -->
+          
+              <!-- 《添加版权声明 -->
+
+
+<!-- #版权基础设定：0-关闭声明； 1-文章对应的md文件里有declare: true属性，才有版权声明； 2-所有文章均有版权声明 -->
+
+  <div class="declare">
+    <strong class="author">本文作者：</strong>
+    
+      Ezio Zhao
+    
+    <br>
+    <strong class="create-time">发布时间：</strong>
+    2020-11-18
+    <br>
+    <strong class="update-time">最后更新：</strong>
+    2020-11-20
+    <br>
+    <strong class="article-titles">本文标题：</strong>
+    <a href="https://eziozhao.com/article/836498cb.html" title="每日一题 20/11/18 134.加油站" target="_blank">每日一题 20/11/18 134.加油站</a>
+    <br>
+    <strong class="article-url">本文链接：</strong>
+    <a href="https://eziozhao.com/article/836498cb.html" title="每日一题 20/11/18 134.加油站" target="_blank">https://eziozhao.com/article/836498cb.html</a>
+    <br>
+    <strong class="copyright">版权声明：</strong>
+    本作品采用
+    <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议">CC BY-NC-SA 4.0</a>
+    许可协议进行许可。转载请注明出处！
+    
+      <br>
+      <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"/></a>
+    
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/article/c1e8b599.html" class="archive-article-date">
-  	<time datetime="2020-09-12T04:30:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/article/c1e8b599.html">手把手教你在vue项目中使用tinymce富文本组件</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
+<!-- 添加版权声明》 -->
           
+          <!-- 添加版权声明》 -->
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">富文本</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/article/77c99ee6.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          每日一题 20/11/19 283.移动零
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/article/b2e104ce.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日一题 20/11/17 1030.距离顺序排列矩阵单元格</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'ff2070a2cd54acf99e43',
+  	clientSecret: '88520fd1d0244b4dc73127dd8053f755fd58e759',
+  	repo: 'gitalk',
+  	owner: 'eziozhao',
+  	admin: ['eziozhao'],
+  	id: 'Wed Nov 18 2020 15:08:50 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+  
+  
 
 
           </div>
@@ -273,8 +347,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

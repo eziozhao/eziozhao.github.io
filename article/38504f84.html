@@ -12,15 +12,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://eziozhao.com">
-  <title>Archives: 2020/9 | EzioZhao</title>
+  <title>每日一题 20/11/16 406.根据身高重建队列 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="EzioZhao">
-<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;archives&#x2F;2020&#x2F;09&#x2F;index.html">
+  <meta name="description" content="题目假设有打乱顺序的一群人站成一个队列。 每个人由一个整数对(h, k)表示，其中h是这个人的身高，k是排在这个人前面且身高大于或等于h的人数。 编写一个算法来重建这个队列。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一题 20&#x2F;11&#x2F;16 406.根据身高重建队列">
+<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;article&#x2F;38504f84.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="记录每天的进步">
+<meta property="og:description" content="题目假设有打乱顺序的一群人站成一个队列。 每个人由一个整数对(h, k)表示，其中h是这个人的身高，k是排在这个人前面且身高大于或等于h的人数。 编写一个算法来重建这个队列。">
+<meta property="article:published_time" content="2020-11-16T07:18:01.000Z">
+<meta property="article:modified_time" content="2020-11-20T14:29:36.717Z">
 <meta property="article:author" content="Ezio Zhao">
+<meta property="article:tag" content="每日一题">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
@@ -143,113 +147,177 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-每日一题-20-11-16" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/article/a439326f.html" class="archive-article-date">
-  	<time datetime="2020-09-13T15:18:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/article/a439326f.html">2020年还不懂vue生命周期？一文带你理解vue生命周期那些事</a>
+    <h1 class="article-title" itemprop="name">
+      每日一题 20/11/16 406.根据身高重建队列
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/article/38504f84.html" class="archive-article-date">
+  	<time datetime="2020-11-16T07:18:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+	  
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>假设有打乱顺序的一群人站成一个队列。 每个人由一个整数对<code>(h, k)</code>表示，其中<code>h</code>是这个人的身高，<code>k</code>是排在这个人前面且身高大于或等于<code>h</code>的人数。 编写一个算法来重建这个队列。</p>
+<a id="more"></a>
 
-          
+<p><strong>注意：</strong> 总人数少于1100人。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">[[<span class="number">7</span>,<span class="number">0</span>], [<span class="number">4</span>,<span class="number">4</span>], [<span class="number">7</span>,<span class="number">1</span>], [<span class="number">5</span>,<span class="number">0</span>], [<span class="number">6</span>,<span class="number">1</span>], [<span class="number">5</span>,<span class="number">2</span>]]</span><br><span class="line"></span><br><span class="line">输出:</span><br><span class="line">[[<span class="number">5</span>,<span class="number">0</span>], [<span class="number">7</span>,<span class="number">0</span>], [<span class="number">5</span>,<span class="number">2</span>], [<span class="number">6</span>,<span class="number">1</span>], [<span class="number">4</span>,<span class="number">4</span>], [<span class="number">7</span>,<span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>按照身高下降的顺序对原数组进行排序，如果身高相同，则把k值大的放在后面，因为他前面站更多的人</li>
+<li>遍历排序后的数组，对于每一个元素，其k值等于i，就让他放在新数组第 i 个位置( i 从0开始）。这样就可以保障每一个元素（h,k)的前面都有k个身高大于等于他的元素</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span>[][] reconstructQueue(<span class="keyword">int</span>[][] people) &#123;</span><br><span class="line">            Arrays.sort(people, <span class="keyword">new</span> Comparator&lt;<span class="keyword">int</span>[]&gt;() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] o1, <span class="keyword">int</span>[] o2)</span> </span>&#123;</span><br><span class="line">                    <span class="comment">//身高大的放在前面</span></span><br><span class="line">                    <span class="keyword">if</span> (o1[<span class="number">0</span>] != o2[<span class="number">0</span>]) &#123;</span><br><span class="line">                        <span class="keyword">return</span> o2[<span class="number">0</span>] - o1[<span class="number">0</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//身高相同时 k值大的放后面</span></span><br><span class="line">                    <span class="keyword">return</span> o1[<span class="number">1</span>] - o2[<span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">int</span> len = people.length;</span><br><span class="line">            List&lt;<span class="keyword">int</span>[]&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span>[] arr : people) &#123;</span><br><span class="line">                ans.add(arr[<span class="number">1</span>], arr);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> ans.toArray(<span class="keyword">new</span> <span class="keyword">int</span>[len][]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+
+      
+          <!-- 《添加版权声明 -->
+          
+              <!-- 《添加版权声明 -->
+
+
+<!-- #版权基础设定：0-关闭声明； 1-文章对应的md文件里有declare: true属性，才有版权声明； 2-所有文章均有版权声明 -->
+
+  <div class="declare">
+    <strong class="author">本文作者：</strong>
+    
+      Ezio Zhao
+    
+    <br>
+    <strong class="create-time">发布时间：</strong>
+    2020-11-16
+    <br>
+    <strong class="update-time">最后更新：</strong>
+    2020-11-20
+    <br>
+    <strong class="article-titles">本文标题：</strong>
+    <a href="https://eziozhao.com/article/38504f84.html" title="每日一题 20/11/16 406.根据身高重建队列" target="_blank">每日一题 20/11/16 406.根据身高重建队列</a>
+    <br>
+    <strong class="article-url">本文链接：</strong>
+    <a href="https://eziozhao.com/article/38504f84.html" title="每日一题 20/11/16 406.根据身高重建队列" target="_blank">https://eziozhao.com/article/38504f84.html</a>
+    <br>
+    <strong class="copyright">版权声明：</strong>
+    本作品采用
+    <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议">CC BY-NC-SA 4.0</a>
+    许可协议进行许可。转载请注明出处！
+    
+      <br>
+      <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"/></a>
+    
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/article/c1e8b599.html" class="archive-article-date">
-  	<time datetime="2020-09-12T04:30:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/article/c1e8b599.html">手把手教你在vue项目中使用tinymce富文本组件</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
+<!-- 添加版权声明》 -->
           
+          <!-- 添加版权声明》 -->
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">富文本</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/article/b2e104ce.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          每日一题 20/11/17 1030.距离顺序排列矩阵单元格
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/article/9e0f2419.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日一题 20/11/15 402.移掉K位数字</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'ff2070a2cd54acf99e43',
+  	clientSecret: '88520fd1d0244b4dc73127dd8053f755fd58e759',
+  	repo: 'gitalk',
+  	owner: 'eziozhao',
+  	admin: ['eziozhao'],
+  	id: 'Mon Nov 16 2020 15:18:01 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+  
+  
 
 
           </div>
@@ -273,8 +341,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
