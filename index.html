@@ -165,14 +165,8 @@
     
     <div class="article-entry" itemprop="articleBody">
 	  
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在我们平时书写Java程序时，新建一个对象直接使用<code>new</code>关键字就可以了，但是你知道当你写下<code>new</code>这3个简单的字母时，Java虚拟机默默做了哪些工作吗?看完下面这张图你就懂了~</p>
-<h2 id="对象创建流程图"><a href="#对象创建流程图" class="headerlink" title="对象创建流程图"></a>对象创建流程图</h2><p><img src="https://gitee.com/eziozhao/image/raw/master/Img/%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA.svg" alt=""></p>
-<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="内存规整"><a href="#内存规整" class="headerlink" title="内存规整"></a>内存规整</h3><p>如果所有用过的内存放一边，空闲的放一边，中间一个指针作为分界点的指示器，那么分配内存时只需把指针向空闲区那边移动即可，这就是<code>指针碰撞</code>的分配方式。</p>
-<h3 id="内存不规整"><a href="#内存不规整" class="headerlink" title="内存不规整"></a>内存不规整</h3><p>已使用的内存和空闲内存交错，那么虚拟机就要维护一个列表，记录可用的内存块。分配时从列表中找到足够大的一块空间，然后更新列表记录，这就是<code>空闲列表</code>的方式。</p>
-<h3 id="初始化零值"><a href="#初始化零值" class="headerlink" title="初始化零值"></a>初始化零值</h3><p>使得对象的实例字段可以不赋初始值就能使用。</p>
-<h3 id="进行必要的对象设置"><a href="#进行必要的对象设置" class="headerlink" title="进行必要的对象设置"></a>进行必要的对象设置</h3><p>比如，这个对象是哪个类的实例，如何找到类的元数据信息、对象哈希码、对象GC（垃圾回收）分代年龄等信息。</p>
-<h2 id="JVM流程结束之后"><a href="#JVM流程结束之后" class="headerlink" title="JVM流程结束之后"></a>JVM流程结束之后</h2><p>这时Java程序才开始执行类的init方法，按照用户的意愿初始化。</p>
-
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在我们平时书写Java程序时，新建一个对象直接使用<code>new</code>关键字就可以了，但是你知道当你写下<code>new</code>这3个简单的字母时，Java虚拟机默默做了哪些工作吗?<br>看完下面这张图你就懂了~</p>
+        
       
 
 
