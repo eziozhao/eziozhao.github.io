@@ -12,16 +12,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://eziozhao.com">
-  <title>每日一题 20/11/19 283.移动零 | EzioZhao</title>
+  <title>每日一题 20/11/23 452.用最少数量的箭引爆气球 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。">
+  <meta name="description" content="题目在二维空间中有许多球形的气球。对于每个气球，提供的输入是水平方向上，气球直径的开始和结束坐标。由于它是水平的，所以纵坐标并不重要，因此只要知道开始和结束的横坐标就足够了。开始坐标总是小于结束坐标。 一支弓箭可以沿着 x 轴从不同点完全垂直地射出。在坐标 x 处射出一支箭，若有一个气球的直径的开始和结束坐标为 xstart，xend， 且满足  xstart ≤ x ≤ xend，则该气球会被引">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一题 20&#x2F;11&#x2F;19 283.移动零">
-<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;article&#x2F;77c99ee6.html">
+<meta property="og:title" content="每日一题 20&#x2F;11&#x2F;23 452.用最少数量的箭引爆气球">
+<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;article&#x2F;ca06d557.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="题目给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。">
-<meta property="article:published_time" content="2020-11-19T02:28:11.000Z">
-<meta property="article:modified_time" content="2020-11-20T14:29:36.718Z">
+<meta property="og:description" content="题目在二维空间中有许多球形的气球。对于每个气球，提供的输入是水平方向上，气球直径的开始和结束坐标。由于它是水平的，所以纵坐标并不重要，因此只要知道开始和结束的横坐标就足够了。开始坐标总是小于结束坐标。 一支弓箭可以沿着 x 轴从不同点完全垂直地射出。在坐标 x 处射出一支箭，若有一个气球的直径的开始和结束坐标为 xstart，xend， 且满足  xstart ≤ x ≤ xend，则该气球会被引">
+<meta property="article:published_time" content="2020-11-23T14:09:57.000Z">
+<meta property="article:modified_time" content="2020-11-23T14:14:44.036Z">
 <meta property="article:author" content="Ezio Zhao">
 <meta property="article:tag" content="每日一题">
 <meta property="article:tag" content="leetcode">
@@ -147,35 +147,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-每日一题-20-11-19-283-移动零" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20-11-23" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      每日一题 20/11/19 283.移动零
+      每日一题 20/11/23 452.用最少数量的箭引爆气球
     </h1>
   
 
         
-        <a href="/article/77c99ee6.html" class="archive-article-date">
-  	<time datetime="2020-11-19T02:28:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-19</time>
+        <a href="/article/ca06d557.html" class="archive-article-date">
+  	<time datetime="2020-11-23T14:09:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
 	  
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>在二维空间中有许多球形的气球。对于每个气球，提供的输入是水平方向上，气球直径的开始和结束坐标。由于它是水平的，所以纵坐标并不重要，因此只要知道开始和结束的横坐标就足够了。开始坐标总是小于结束坐标。</p>
+<p>一支弓箭可以沿着 x 轴从不同点完全垂直地射出。在坐标 x 处射出一支箭，若有一个气球的直径的开始和结束坐标为 xstart，xend， 且满足  xstart ≤ x ≤ xend，则该气球会被引爆。可以射出的弓箭的数量没有限制。 弓箭一旦被射出之后，可以无限地前进。我们想找到使得所有气球全部被引爆，所需的弓箭的最小数量。</p>
+<p>给你一个数组 points ，其中 points [i] = [xstart,xend] ，返回引爆所有气球所必须射出的最小弓箭数。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons" target="_blank" rel="noopener">https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <a id="more"></a>
 
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入: [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">12</span>]</span><br><span class="line">输出: [<span class="number">1</span>,<span class="number">3</span>,<span class="number">12</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
-<li>遍历数组将非0元素依次赋值</li>
-<li>根据索引判断剩下多少个0 然后依次赋值</li>
-</ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != <span class="number">0</span>) &#123;</span><br><span class="line">                nums[count++]=nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (count &lt; len) &#123;</span><br><span class="line">            nums[count++] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2>
       
 
 
@@ -194,16 +192,16 @@
     
     <br>
     <strong class="create-time">发布时间：</strong>
-    2020-11-19
+    2020-11-23
     <br>
     <strong class="update-time">最后更新：</strong>
-    2020-11-20
+    2020-11-23
     <br>
     <strong class="article-titles">本文标题：</strong>
-    <a href="https://eziozhao.com/article/77c99ee6.html" title="每日一题 20/11/19 283.移动零" target="_blank">每日一题 20/11/19 283.移动零</a>
+    <a href="https://eziozhao.com/article/ca06d557.html" title="每日一题 20/11/23 452.用最少数量的箭引爆气球" target="_blank">每日一题 20/11/23 452.用最少数量的箭引爆气球</a>
     <br>
     <strong class="article-url">本文链接：</strong>
-    <a href="https://eziozhao.com/article/77c99ee6.html" title="每日一题 20/11/19 283.移动零" target="_blank">https://eziozhao.com/article/77c99ee6.html</a>
+    <a href="https://eziozhao.com/article/ca06d557.html" title="每日一题 20/11/23 452.用最少数量的箭引爆气球" target="_blank">https://eziozhao.com/article/ca06d557.html</a>
     <br>
     <strong class="copyright">版权声明：</strong>
     本作品采用
@@ -250,18 +248,18 @@
   
 <nav id="article-nav">
   
-    <a href="/article/d310432f.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/article/9f80d882.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          每日一题 147.对链表插入排序
+          一张图秒懂JVM中的对象创建过程
         
       </div>
     </a>
   
   
-    <a href="/article/836498cb.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">每日一题 20/11/18 134.加油站</div>
+    <a href="/article/d310432f.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日一题 147.对链表插入排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -307,7 +305,7 @@ if(true){
   	repo: 'gitalk',
   	owner: 'eziozhao',
   	admin: ['eziozhao'],
-  	id: 'Thu Nov 19 2020 10:28:11 GMT+0800',
+  	id: 'Mon Nov 23 2020 22:09:57 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
