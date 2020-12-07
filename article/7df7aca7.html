@@ -12,16 +12,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://eziozhao.com">
-  <title>Tag: JVM | EzioZhao</title>
+  <title>一张图秒懂JVM内存区域的划分 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每天的进步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="EzioZhao">
-<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;tags&#x2F;JVM&#x2F;index.html">
+  <meta name="description" content="Java的内存管理前言和C语言不同，Java程序员得益于JVM的帮助，不需要手动释放对象的内存。但是，一旦遇到内存泄漏等问题，如果我们对JVM的内存管理不了解，就很难排查问题。因此，熟悉JVM的内存区域是十分有必要的。 注：本文对JVM的阐述基于Hotspot JVM内存区域划分图 名词解释方法区方法区是JVM规范中的一个概念，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一张图秒懂JVM内存区域的划分">
+<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;article&#x2F;7df7aca7.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="记录每天的进步">
+<meta property="og:description" content="Java的内存管理前言和C语言不同，Java程序员得益于JVM的帮助，不需要手动释放对象的内存。但是，一旦遇到内存泄漏等问题，如果我们对JVM的内存管理不了解，就很难排查问题。因此，熟悉JVM的内存区域是十分有必要的。 注：本文对JVM的阐述基于Hotspot JVM内存区域划分图 名词解释方法区方法区是JVM规范中的一个概念，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码">
+<meta property="og:image" content="https:&#x2F;&#x2F;gitee.com&#x2F;eziozhao&#x2F;image&#x2F;raw&#x2F;master&#x2F;Img&#x2F;image-20201206191714526.png">
+<meta property="article:published_time" content="2020-12-06T08:18:45.000Z">
+<meta property="article:modified_time" content="2020-12-07T13:54:26.748Z">
 <meta property="article:author" content="Ezio Zhao">
+<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;gitee.com&#x2F;eziozhao&#x2F;image&#x2F;raw&#x2F;master&#x2F;Img&#x2F;image-20201206191714526.png">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
   
@@ -143,36 +148,115 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-一张图秒懂JVM内存区域的划分" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      一张图秒懂JVM内存区域的划分
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/article/7df7aca7.html" class="archive-article-date">
+
+        
+        <a href="/article/7df7aca7.html" class="archive-article-date">
   	<time datetime="2020-12-06T08:18:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/article/7df7aca7.html">一张图秒懂JVM内存区域的划分</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+	  
+        <h2 id="Java的内存管理"><a href="#Java的内存管理" class="headerlink" title="Java的内存管理"></a>Java的内存管理</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>和C语言不同，Java程序员得益于JVM的帮助，不需要手动释放对象的内存。但是，一旦遇到内存泄漏等问题，如果我们对JVM的内存管理不了解，就很难排查问题。因此，熟悉JVM的内存区域是十分有必要的。</p>
+<p><em>注：本文对JVM的阐述基于Hotspot</em></p>
+<h2 id="JVM内存区域划分图"><a href="#JVM内存区域划分图" class="headerlink" title="JVM内存区域划分图"></a>JVM内存区域划分图</h2><p><img src="https://gitee.com/eziozhao/image/raw/master/Img/image-20201206191714526.png" alt="image-20201206191714526"></p>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>方法区是JVM规范中的一个概念，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等。不同的虚拟机可以用自己的方式实现方法区。对于Hotspot来说，这种方式就是<strong>永久代</strong>。</p>
+<p>在<strong>JDK1.7</strong>时，原本放在方法区的字符串常量池被移出到了堆中。</p>
+<p>在<strong>JDK1.8</strong>时，移除了整个方法区，并用元空间取代。</p>
+<h3 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h3><p>要了解运行时常量池，我们需要先了解一下什么是class文件常量池</p>
+<h4 id="class文件常量池"><a href="#class文件常量池" class="headerlink" title="class文件常量池"></a>class文件常量池</h4><p>class文件常量池是指编译生成的class字节码文件结构中的一个常量池（Constant Pool Table），用于存放编译期间生成的各种<strong>字面量和符号引用</strong>，这部分内容将在类加载后，存放于方法区的运行时常量池。</p>
+<p>其中字面量指的是字符串字面量和声明为final的常量值（基本数据类型）。字符串字面量除了类中所有双引号括起来的字符串（包括方法体内的），还包括所有用到的类名、方法名和这些类与方法的字符串描述、字段（成员变量）的名称和描述符。</p>
+<p>符号引用是一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时能无歧义地定位到目标即可（它与直接引用区分一下，直接引用一般是指向方法区的本地指针，相对偏移量或是一个能间接定位到目标的句柄）。</p>
+<p>符号引用包括以下3部分</p>
+<ul>
+<li>.类的全限定名</li>
+<li>字段名和属性</li>
+<li>方法名和属性</li>
+</ul>
+<p>当java文件被编译成class文件之后就会生成class文件常量池。</p>
+<p><strong>当类加载到内存中后，jvm就会将class常量池中的内容存放到运行时常量池中</strong>，在class文件常量池的符号引用有一部分是会被转变为直接引用的，比如说类的静态方法或私有方法，实例构造方法，父类方法，这是因为这些方法不能被重写其他版本，所以能在加载的时候就可以将符号引用转变为直接引用，而其他的一些方法是在这个方法被第一次调用的时候才会将符号引用转变为直接引用的。</p>
+<p>而把<strong>符号引用替换为直接引用</strong>的过程会去查询<strong>全局字符串池</strong>，以保证运行时常量池所引用的字符串与全局字符串池中所引用的是一致的。</p>
+<p>这里就牵扯出一个新概念，全局字符串池。</p>
+<h4 id="全局字符串池-字符串常量池"><a href="#全局字符串池-字符串常量池" class="headerlink" title="全局字符串池(字符串常量池)"></a>全局字符串池(字符串常量池)</h4><p>字符串常量池是<strong>全局的</strong>，因此可以成为全局字符串池。这一部分在<strong>JDK1.6</strong>时代位于方法区。<strong>JDK1.7</strong>时从方法区移到了堆区。</p>
+<p>运行时常量池中的字符串字面量若是成员的，则在类加载初始化阶段就使用到了字符串常量池；若是本地的，则在使用到的时候才会使用字符串常量池，在给String类型的引用赋值的时候会先看常量池中是否存在这个字符串对象的引用，若有就直接返回这个引用，若没有，就在堆里创建这个字符串对象并在字符串常量池中记录下这个引用。String类的intern()方法还可以在运行期间把字符串放到字符串常量池中。</p>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>直接内存并不是虚拟机运行时数据区的一部分，也不是虚拟机规范中定义的内存区域，但是这部分内存也被频繁地使用。而且也可能导致 OutOfMemoryError 错误出现。JDK1.4 中新加入的 NIO(New Input/Output) 类，引入了一种基于通道（Channel)与缓存区（Buffer) 的 I/O 方式，它可以直接使用 Native 函数库直接分配堆外内存，然后通过一个存储在 Java 堆中的 DirectByteBuffer 对象作为这块内存的引用进行操作。这样就能在一些场景中显著提高性能，因为避免了在 Java 堆和 Native 堆之间来回复制数据。</p>
+<p>本机直接内存的分配不会受到 Java 堆的限制，但是，既然是内存就会受到本机总内存大小以及处理器寻址空间的限制。</p>
+<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><p>JDK1.8开始后，用来取代方法区。元空间直接使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。</p>
+<p>可以通过以下参数调整元空间大小:</p>
+<ul>
+<li>XX:MetaspaceSize，初始空间大小，达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整：如果释放了大量的空间，就适当降低该值；如果释放了很少的空间，那么在不超过MaxMetaspaceSize时，适当提高该值。</li>
+<li>XX:MaxMetaspaceSize，最大空间，默认是没有限制的。</li>
+</ul>
+<p>此外还有两个与垃圾回收相关的参数：</p>
+<ul>
+<li>XX:MinMetaspaceFreeRatio，在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集。</li>
+<li>XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集。</li>
+</ul>
+<h4 id="为什么要用元空间取代永久代？"><a href="#为什么要用元空间取代永久代？" class="headerlink" title="为什么要用元空间取代永久代？"></a>为什么要用元空间取代永久代？</h4><ol>
+<li>整个永久代有一个 JVM启动时就固定好的上限，很难进行调优，而元空间使用的是直接内存，受本机可用内存的限制，虽然元空间仍旧可能溢出，但是比原来出现的几率会更小。</li>
+<li>简化Full GC：每一个回收器有专门的元数据迭代器。</li>
+<li>可以在GC不进行暂停的情况下并发地释放类数据。</li>
+<li>元空间里面存放的是类的元数据，这样加载多少类的元数据就不由 <code>MaxPermSize</code> 控制了, 而由系统的实际可用空间来控制，这样能加载的类就更多了。</li>
+<li>方便融合Hotspot和JRockit，因为只有Hotspot中有永久代。</li>
+</ol>
 
-        <div class="article-info info-on-right">
+      
+
+
+      
+          <!-- 《添加版权声明 -->
           
+              <!-- 《添加版权声明 -->
+
+
+<!-- #版权基础设定：0-关闭声明； 1-文章对应的md文件里有declare: true属性，才有版权声明； 2-所有文章均有版权声明 -->
+
+  <div class="declare">
+    <strong class="author">本文作者：</strong>
+    
+      Ezio Zhao
+    
+    <br>
+    <strong class="create-time">发布时间：</strong>
+    2020-12-06
+    <br>
+    <strong class="update-time">最后更新：</strong>
+    2020-12-07
+    <br>
+    <strong class="article-titles">本文标题：</strong>
+    <a href="https://eziozhao.com/article/7df7aca7.html" title="一张图秒懂JVM内存区域的划分" target="_blank">一张图秒懂JVM内存区域的划分</a>
+    <br>
+    <strong class="article-url">本文链接：</strong>
+    <a href="https://eziozhao.com/article/7df7aca7.html" title="一张图秒懂JVM内存区域的划分" target="_blank">https://eziozhao.com/article/7df7aca7.html</a>
+    <br>
+    <strong class="copyright">版权声明：</strong>
+    本作品采用
+    <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议">CC BY-NC-SA 4.0</a>
+    许可协议进行许可。转载请注明出处！
+    
+      <br>
+      <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"/></a>
+    
+  </div>
+
+<!-- 添加版权声明》 -->
+          
+          <!-- 添加版权声明》 -->
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -184,57 +268,75 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/article/9f80d882.html" class="archive-article-date">
-  	<time datetime="2020-11-29T12:07:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/article/9f80d882.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一张图秒懂JVM中的对象创建过程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/article/9f80d882.html">一张图秒懂JVM中的对象创建过程</a>
-    </h1>
+        
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'ff2070a2cd54acf99e43',
+  	clientSecret: '88520fd1d0244b4dc73127dd8053f755fd58e759',
+  	repo: 'gitalk',
+  	owner: 'eziozhao',
+  	admin: ['eziozhao'],
+  	id: 'Sun Dec 06 2020 16:18:45 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+  
+  
 
 
           </div>
@@ -258,9 +360,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

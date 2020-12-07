@@ -145,6 +145,134 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-一张图秒懂JVM内存区域的划分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/article/7df7aca7.html">一张图秒懂JVM内存区域的划分</a>
+    </h1>
+  
+
+        
+        <a href="/article/7df7aca7.html" class="archive-article-date">
+  	<time datetime="2020-12-06T08:18:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+	  
+        <h2 id="Java的内存管理"><a href="#Java的内存管理" class="headerlink" title="Java的内存管理"></a>Java的内存管理</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>和C语言不同，Java程序员得益于JVM的帮助，不需要手动释放对象的内存。但是，一旦遇到内存泄漏等问题，如果我们对JVM的内存管理不了解，就很难排查问题。因此，熟悉JVM的内存区域是十分有必要的。</p>
+<p><em>注：本文对JVM的阐述基于Hotspot</em></p>
+<h2 id="JVM内存区域划分图"><a href="#JVM内存区域划分图" class="headerlink" title="JVM内存区域划分图"></a>JVM内存区域划分图</h2><p><img src="https://gitee.com/eziozhao/image/raw/master/Img/image-20201206191714526.png" alt="image-20201206191714526"></p>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>方法区是JVM规范中的一个概念，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等。不同的虚拟机可以用自己的方式实现方法区。对于Hotspot来说，这种方式就是<strong>永久代</strong>。</p>
+<p>在<strong>JDK1.7</strong>时，原本放在方法区的字符串常量池被移出到了堆中。</p>
+<p>在<strong>JDK1.8</strong>时，移除了整个方法区，并用元空间取代。</p>
+<h3 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h3><p>要了解运行时常量池，我们需要先了解一下什么是class文件常量池</p>
+<h4 id="class文件常量池"><a href="#class文件常量池" class="headerlink" title="class文件常量池"></a>class文件常量池</h4><p>class文件常量池是指编译生成的class字节码文件结构中的一个常量池（Constant Pool Table），用于存放编译期间生成的各种<strong>字面量和符号引用</strong>，这部分内容将在类加载后，存放于方法区的运行时常量池。</p>
+<p>其中字面量指的是字符串字面量和声明为final的常量值（基本数据类型）。字符串字面量除了类中所有双引号括起来的字符串（包括方法体内的），还包括所有用到的类名、方法名和这些类与方法的字符串描述、字段（成员变量）的名称和描述符。</p>
+<p>符号引用是一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时能无歧义地定位到目标即可（它与直接引用区分一下，直接引用一般是指向方法区的本地指针，相对偏移量或是一个能间接定位到目标的句柄）。</p>
+<p>符号引用包括以下3部分</p>
+<ul>
+<li>.类的全限定名</li>
+<li>字段名和属性</li>
+<li>方法名和属性</li>
+</ul>
+<p>当java文件被编译成class文件之后就会生成class文件常量池。</p>
+<p><strong>当类加载到内存中后，jvm就会将class常量池中的内容存放到运行时常量池中</strong>，在class文件常量池的符号引用有一部分是会被转变为直接引用的，比如说类的静态方法或私有方法，实例构造方法，父类方法，这是因为这些方法不能被重写其他版本，所以能在加载的时候就可以将符号引用转变为直接引用，而其他的一些方法是在这个方法被第一次调用的时候才会将符号引用转变为直接引用的。</p>
+<p>而把<strong>符号引用替换为直接引用</strong>的过程会去查询<strong>全局字符串池</strong>，以保证运行时常量池所引用的字符串与全局字符串池中所引用的是一致的。</p>
+<p>这里就牵扯出一个新概念，全局字符串池。</p>
+<h4 id="全局字符串池-字符串常量池"><a href="#全局字符串池-字符串常量池" class="headerlink" title="全局字符串池(字符串常量池)"></a>全局字符串池(字符串常量池)</h4><p>字符串常量池是<strong>全局的</strong>，因此可以成为全局字符串池。这一部分在<strong>JDK1.6</strong>时代位于方法区。<strong>JDK1.7</strong>时从方法区移到了堆区。</p>
+<p>运行时常量池中的字符串字面量若是成员的，则在类加载初始化阶段就使用到了字符串常量池；若是本地的，则在使用到的时候才会使用字符串常量池，在给String类型的引用赋值的时候会先看常量池中是否存在这个字符串对象的引用，若有就直接返回这个引用，若没有，就在堆里创建这个字符串对象并在字符串常量池中记录下这个引用。String类的intern()方法还可以在运行期间把字符串放到字符串常量池中。</p>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>直接内存并不是虚拟机运行时数据区的一部分，也不是虚拟机规范中定义的内存区域，但是这部分内存也被频繁地使用。而且也可能导致 OutOfMemoryError 错误出现。JDK1.4 中新加入的 NIO(New Input/Output) 类，引入了一种基于通道（Channel)与缓存区（Buffer) 的 I/O 方式，它可以直接使用 Native 函数库直接分配堆外内存，然后通过一个存储在 Java 堆中的 DirectByteBuffer 对象作为这块内存的引用进行操作。这样就能在一些场景中显著提高性能，因为避免了在 Java 堆和 Native 堆之间来回复制数据。</p>
+<p>本机直接内存的分配不会受到 Java 堆的限制，但是，既然是内存就会受到本机总内存大小以及处理器寻址空间的限制。</p>
+<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><p>JDK1.8开始后，用来取代方法区。元空间直接使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。</p>
+<p>可以通过以下参数调整元空间大小:</p>
+<ul>
+<li>XX:MetaspaceSize，初始空间大小，达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整：如果释放了大量的空间，就适当降低该值；如果释放了很少的空间，那么在不超过MaxMetaspaceSize时，适当提高该值。</li>
+<li>XX:MaxMetaspaceSize，最大空间，默认是没有限制的。</li>
+</ul>
+<p>此外还有两个与垃圾回收相关的参数：</p>
+<ul>
+<li>XX:MinMetaspaceFreeRatio，在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集。</li>
+<li>XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集。</li>
+</ul>
+<h4 id="为什么要用元空间取代永久代？"><a href="#为什么要用元空间取代永久代？" class="headerlink" title="为什么要用元空间取代永久代？"></a>为什么要用元空间取代永久代？</h4><ol>
+<li>整个永久代有一个 JVM启动时就固定好的上限，很难进行调优，而元空间使用的是直接内存，受本机可用内存的限制，虽然元空间仍旧可能溢出，但是比原来出现的几率会更小。</li>
+<li>简化Full GC：每一个回收器有专门的元数据迭代器。</li>
+<li>可以在GC不进行暂停的情况下并发地释放类数据。</li>
+<li>元空间里面存放的是类的元数据，这样加载多少类的元数据就不由 <code>MaxPermSize</code> 控制了, 而由系统的实际可用空间来控制，这样能加载的类就更多了。</li>
+<li>方便融合Hotspot和JRockit，因为只有Hotspot中有永久代。</li>
+</ol>
+
+      
+
+
+      
+          <!-- 《添加版权声明 -->
+          
+              <!-- 《添加版权声明 -->
+
+
+<!-- #版权基础设定：0-关闭声明； 1-文章对应的md文件里有declare: true属性，才有版权声明； 2-所有文章均有版权声明 -->
+
+  <div class="declare" hidden="hidden"></div>
+
+<!-- 添加版权声明》 -->
+          
+          <!-- 添加版权声明》 -->
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/article/7df7aca7.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-一张图秒懂JVM中的对象创建过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
