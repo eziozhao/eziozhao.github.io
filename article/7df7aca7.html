@@ -22,7 +22,7 @@
 <meta property="og:description" content="前言和C语言不同，Java程序员得益于JVM的帮助，不需要手动释放对象的内存。但是，一旦遇到内存泄漏等问题，如果我们对JVM的内存管理不了解，就很难排查问题。因此，熟悉JVM的内存区域是十分有必要的。">
 <meta property="og:image" content="https:&#x2F;&#x2F;gitee.com&#x2F;eziozhao&#x2F;image&#x2F;raw&#x2F;master&#x2F;Img&#x2F;image-20201206191714526.png">
 <meta property="article:published_time" content="2020-12-06T08:18:45.000Z">
-<meta property="article:modified_time" content="2020-12-07T15:07:16.860Z">
+<meta property="article:modified_time" content="2020-12-09T07:17:28.124Z">
 <meta property="article:author" content="Ezio Zhao">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -182,9 +182,9 @@
 <p>符号引用是一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时能无歧义地定位到目标即可（它与直接引用区分一下，直接引用一般是指向方法区的本地指针，相对偏移量或是一个能间接定位到目标的句柄）。</p>
 <p>符号引用包括以下3部分</p>
 <ul>
-<li>.类的全限定名</li>
-<li>字段名和属性</li>
-<li>方法名和属性</li>
+<li>类和接口的全限定名</li>
+<li>字段名和描述符</li>
+<li>方法名和描述符</li>
 </ul>
 <p>当java文件被编译成class文件之后就会生成class文件常量池。</p>
 <p><strong>当类加载到内存中后，jvm就会将class常量池中的内容存放到运行时常量池中</strong>，在class文件常量池的符号引用有一部分是会被转变为直接引用的，比如说类的静态方法或私有方法，实例构造方法，父类方法，这是因为这些方法不能被重写其他版本，所以能在加载的时候就可以将符号引用转变为直接引用，而其他的一些方法是在这个方法被第一次调用的时候才会将符号引用转变为直接引用的。</p>
@@ -234,7 +234,7 @@
     2020-12-06
     <br>
     <strong class="update-time">最后更新：</strong>
-    2020-12-07
+    2020-12-09
     <br>
     <strong class="article-titles">本文标题：</strong>
     <a href="https://eziozhao.com/article/7df7aca7.html" title="一张图秒懂JVM内存区域的划分" target="_blank">一张图秒懂JVM内存区域的划分</a>
