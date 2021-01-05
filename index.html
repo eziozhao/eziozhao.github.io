@@ -170,26 +170,7 @@
 <p>分组可以用区间 <code>[start, end]</code> 表示，其中 <code>start</code> 和 <code>end</code> 分别表示该分组的起始和终止位置的下标。上例中的 <code>&quot;xxxx&quot;</code> 分组用区间表示为 <code>[3,6]</code> 。</p>
 <p>我们称所有包含大于或等于三个连续字符的分组为 <strong>较大分组</strong> 。</p>
 <p>找到每一个 <strong>较大分组</strong> 的区间，<strong>按起始位置下标递增顺序排序后</strong>，返回结果。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">"abbxxxxzzy"</span></span><br><span class="line">输出：<span class="string">[[3,6]]</span></span><br><span class="line">解释：<span class="string">"xxxx"</span> 是一个起始于 <span class="number">3</span> 且终止于 <span class="number">6</span> 的较大分组。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">s</span> = <span class="string">"abc"</span></span><br><span class="line">输出：[]</span><br><span class="line">解释：<span class="string">"a"</span>,<span class="string">"b"</span> 和 <span class="string">"c"</span> 均不是符合要求的较大分组。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">"abcdddeeeeaabbbcd"</span></span><br><span class="line">输出：[[<span class="number">3</span>,<span class="number">5</span>],[<span class="number">6</span>,<span class="number">9</span>],[<span class="number">12</span>,<span class="number">14</span>]]</span><br><span class="line">解释：较大分组为 <span class="string">"ddd"</span>, <span class="string">"eeee"</span> 和 <span class="string">"bbb"</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 4：</strong></p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">s</span> = <span class="string">"aba"</span></span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= s.length &lt;= 1000</code></li>
-<li><code>s</code> 仅含小写英文字母</li>
-</ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; largeGroupPositions(String s) &#123;</span><br><span class="line">        <span class="keyword">int</span> st = <span class="number">0</span>, e = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">            st = i;</span><br><span class="line">            <span class="keyword">while</span>(i+<span class="number">1</span>&lt;len &amp;&amp; s.charAt(i) == s.charAt(i+<span class="number">1</span>))&#123;</span><br><span class="line">                e = i + <span class="number">1</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(e - st + <span class="number">1</span> &gt;= <span class="number">3</span>)&#123;</span><br><span class="line">                ans.add(Arrays.asList(st, e));</span><br><span class="line">            &#125;</span><br><span class="line">            e = st;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+        
       
 
 
