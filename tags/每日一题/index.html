@@ -12,18 +12,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://eziozhao.com">
-  <title>使用zerotier配置moon结点优化使用体验 | EzioZhao</title>
+  <title>Tag: 每日一题 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="zerotier介绍这是一款能够帮助你轻松实现虚拟局域网的软件。通过它，你可以将100台设备(免费版账号)加入自己创建的虚拟局域网。且该软件支持支持 Windows、macOS、Linux 三大桌面平台，iOS、Android 两大移动平台。官网地址">
-<meta property="og:type" content="article">
-<meta property="og:title" content="使用zerotier配置moon结点优化使用体验">
-<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;article&#x2F;c783d70.html">
+  <meta name="description" content="记录每天的进步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EzioZhao">
+<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;tags&#x2F;%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98&#x2F;index.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="zerotier介绍这是一款能够帮助你轻松实现虚拟局域网的软件。通过它，你可以将100台设备(免费版账号)加入自己创建的虚拟局域网。且该软件支持支持 Windows、macOS、Linux 三大桌面平台，iOS、Android 两大移动平台。官网地址">
-<meta property="article:published_time" content="2020-01-03T09:02:16.000Z">
-<meta property="article:modified_time" content="2020-09-13T09:04:19.673Z">
+<meta property="og:description" content="记录每天的进步">
 <meta property="article:author" content="Ezio Zhao">
-<meta property="article:tag" content="网络应用">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
@@ -146,205 +143,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-使用zerotier设置虚拟局域网-并配置moon优化使用体验" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      使用zerotier配置moon结点优化使用体验
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/article/893563fd.html" class="archive-article-date">
+  	<time datetime="2021-01-05T02:37:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-05</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/article/893563fd.html">每日一题 &#34;每日一题 21/1/5 830较大分组位置&#34;</a>
     </h1>
   
 
-        
-        <a href="/article/c783d70.html" class="archive-article-date">
-  	<time datetime="2020-01-03T09:02:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-	  
-        <h1 id="zerotier介绍"><a href="#zerotier介绍" class="headerlink" title="zerotier介绍"></a>zerotier介绍</h1><p>这是一款能够帮助你轻松实现虚拟局域网的软件。通过它，你可以将100台设备(免费版账号)加入自己创建的虚拟局域网。且该软件支持支持 Windows、macOS、Linux 三大桌面平台，iOS、Android 两大移动平台。<a href="https://www.zerotier.com/" target="_blank" rel="noopener">官网地址</a></p>
-<a id="more"></a>
-
-<h1 id="注册与使用"><a href="#注册与使用" class="headerlink" title="注册与使用"></a>注册与使用</h1><p>该过程十分简单，按照以下四步即可，具体过程网上资料很多，不再赘述。<br></p>
-<ol>
-<li><a href="https://www.zerotier.com/download/" target="_blank" rel="noopener">下载zerotier</a></li>
-<li><a href="https://my.zerotier.com/login" target="_blank" rel="noopener">注册</a></li>
-<li>创建自己的Network</li>
-<li>将需要的设备加入虚拟局域网  </li>
-</ol>
-<h1 id="配置中转moon"><a href="#配置中转moon" class="headerlink" title="配置中转moon"></a>配置中转moon</h1><p>国内用户实际使用zerotier时会发现延迟很高。比如在自己搭建的虚拟局域网中使用windows远程桌面，经常卡屏。怎么办呢？别担心，zerotier官方已经帮你想好了解决方案。<br>首先，明确几个名词</p>
-<ul>
-<li>planet 行星节点，zerotier官方提供的根服务器</li>
-<li>moon 卫星节点 用户自己搭建的服务器，可以中转加速</li>
-<li>leaf 相当于用户实际想组成局域网的那些客户端</li>
-</ul>
-<h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><p>为了避免不必要的麻烦，以下所有命令都默认在管理员状态下进行</p>
-<pre><code>sudo -i//该命令可进入管理员状态</code></pre><h3 id="1、拥有一台自己的vps"><a href="#1、拥有一台自己的vps" class="headerlink" title="1、拥有一台自己的vps"></a>1、拥有一台自己的vps</h3><p>巧妇难为无米之炊，没有自己的服务器何谈加速一说。moon节点服务器不需要多高的配置，关于如何购买请自行搜索。很多平台现在也支持支付宝等国内软件进行支付。如果你只有短期需求，也可以使用谷歌或亚马逊提供的一年免费云服务，有支持外币的信用卡就可以申请。</p>
-<h3 id="2、在moon服务器中安装zerotier"><a href="#2、在moon服务器中安装zerotier" class="headerlink" title="2、在moon服务器中安装zerotier"></a>2、在moon服务器中安装zerotier</h3><p>复制以下命令  </p>
-<pre><code>curl -s https://install.zerotier.com/ | sudo bash</code></pre><h3 id="3、将moon节点加入网络"><a href="#3、将moon节点加入网络" class="headerlink" title="3、将moon节点加入网络"></a>3、将moon节点加入网络</h3><p>归根结底，moon节点只是你个人的一个加速器，zerotier官方提供的NetWork环境还是必不可少的。moon节点和所有的客户机都需要加入你在zerotier官网创建的network。<br>在moon服务中输入以下命令，其中network id是你在zerotier官网创建的network的id  </p>
-<pre><code>zerotier-cli join &lt;network id&gt;</code></pre><h3 id="4、生成moon-json配置文件"><a href="#4、生成moon-json配置文件" class="headerlink" title="4、生成moon.json配置文件"></a>4、生成moon.json配置文件</h3><pre><code>cd /var/lib/zerotier-one //进入目录 之后的命令基本都在该目录执行
-zerotier-idtool initmoon identity.public &gt; moon.json //生成文件</code></pre><h3 id="5、修改配置文件"><a href="#5、修改配置文件" class="headerlink" title="5、修改配置文件"></a>5、修改配置文件</h3><p>使用以下命令进入配置文件，按<strong>i</strong>进入编辑状态。</p>
-<pre><code>[root@moon zerotier-one]# vi moon.json</code></pre><p>修改<strong>stableEndpoints</strong>的值，同时记录一下<strong>id</strong>的值，是一个10位字符串，后面有用。</p>
-<pre><code>&quot;stableEndpoints&quot;: [ &quot;你的vps的ip/9993&quot; ] //9993是zerotier指定的默认端口</code></pre><p>修改完成后，按esc退出编辑状态，然后输入<strong>:wq</strong>保存并退出。</p>
-<h3 id="6、生成moon文件"><a href="#6、生成moon文件" class="headerlink" title="6、生成moon文件"></a>6、生成moon文件</h3><p>首先在/var/lib/zerotier-one目录新建<strong>moons.d</strong>文件夹  </p>
-<pre><code>mkdir moons.d</code></pre><p>生成文件  </p>
-<pre><code>zerotier-idtool genmoon moon.json</code></pre><p>并将生成的 moon 文件放到该文件夹中，其中xxx是之前提到的配置文件中的id</p>
-<pre><code>mv 000000xxxxxxxxxx.moon moons.d/</code></pre><h3 id="7、重启vps的zerotier"><a href="#7、重启vps的zerotier" class="headerlink" title="7、重启vps的zerotier"></a>7、重启vps的zerotier</h3><pre><code>killall -9 zerotier-one</code></pre><p>如果提示<strong>killall: command not found</strong>，则需要先安装<br>debian、ubuntu系统下：</p>
-<pre><code>apt-get install psmisc</code></pre><p>centos 下：</p>
-<pre><code>yum install psmisc</code></pre><p>至此，vps上的操作完成。</p>
-<h3 id="8、将客户机连接到你的moon"><a href="#8、将客户机连接到你的moon" class="headerlink" title="8、将客户机连接到你的moon"></a>8、将客户机连接到你的moon</h3><p>zerotier在不同系统的安装目录如下</p>
-<pre><code>Windows: C:\ProgramData\ZeroTier\One
-Macintosh: /Library/Application Support/ZeroTier/One (在 Terminal 中应为 /Library/Application\ Support/ZeroTier/One)
-Linux: /var/lib/zerotier-one</code></pre><p>以<strong>管理员</strong>身份打开命令行，进到安装目录下。输入以下命令<br>注意：如果没有管理员权限，可能会报错</p>
-<pre><code>zerotier-cli orbit id id //这里的id是之前让你记录的moon.json中的10位字符串</code></pre><p>一般到这里就已经连接成功了。如果你还是有报错，可以尝试直接将000000xxxxxxxxxx.moon文件手动拷贝到客户机的<strong>zerotier-one/moons.d</strong>文件夹中。关于如何将vps中的文件下载到本地，可直接使用xshell自带的文件传输功能。<br>重启客户机的zerotier，以<strong>管理员</strong>权限进入命令行的zerotier安装目录，输入以下命令</p>
-<pre><code>zerotier-cli listpeers</code></pre><p>如果出现了带<strong>MOON</strong>字样的节点，代表连接成功。</p>
-<pre><code>200 listpeers id 你的vps公网ip/9993;2160;2058 196 1.4.6 MOON</code></pre><p>现在，你可以重复步骤8，将所有需要的客户机连接到你的私人moon。<br>Congratulations!</p>
-
-      
-
-
-      
-          <!-- 《添加版权声明 -->
+        <div class="article-info info-on-right">
           
-              <!-- 《添加版权声明 -->
-
-
-<!-- #版权基础设定：0-关闭声明； 1-文章对应的md文件里有declare: true属性，才有版权声明； 2-所有文章均有版权声明 -->
-
-  <div class="declare">
-    <strong class="author">本文作者：</strong>
-    
-      Ezio Zhao
-    
-    <br>
-    <strong class="create-time">发布时间：</strong>
-    2020-01-03
-    <br>
-    <strong class="update-time">最后更新：</strong>
-    2020-09-13
-    <br>
-    <strong class="article-titles">本文标题：</strong>
-    <a href="https://eziozhao.com/article/c783d70.html" title="使用zerotier配置moon结点优化使用体验" target="_blank">使用zerotier配置moon结点优化使用体验</a>
-    <br>
-    <strong class="article-url">本文链接：</strong>
-    <a href="https://eziozhao.com/article/c783d70.html" title="使用zerotier配置moon结点优化使用体验" target="_blank">https://eziozhao.com/article/c783d70.html</a>
-    <br>
-    <strong class="copyright">版权声明：</strong>
-    本作品采用
-    <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议">CC BY-NC-SA 4.0</a>
-    许可协议进行许可。转载请注明出处！
-    
-      <br>
-      <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"/></a>
-    
-  </div>
-
-<!-- 添加版权声明》 -->
-          
-          <!-- 添加版权声明》 -->
-    </div>
-    <div class="article-info article-info-index">
-      
-      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络应用</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/技术分享//" class="article-tag-list-link color5">技术分享</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
 	</div>
 
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/article/6867333c.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Springboot项目中Redis的简单使用
-        
-      </div>
-    </a>
   
   
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+    </div></section>
   
 
-  
-
-  
-
-  
-  
-  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: 'ff2070a2cd54acf99e43',
-  	clientSecret: '88520fd1d0244b4dc73127dd8053f755fd58e759',
-  	repo: 'gitalk',
-  	owner: 'eziozhao',
-  	admin: ['eziozhao'],
-  	id: 'Fri Jan 03 2020 17:02:16 GMT+0800',
-  	distractionFreeMode: 'true'
-})
-gitalk.render('gitalk-container') 
-}
-</script>
-  
-  
+    
 
 
           </div>
@@ -368,9 +224,9 @@ gitalk.render('gitalk-container')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
