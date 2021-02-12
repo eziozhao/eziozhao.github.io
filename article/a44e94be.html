@@ -14,16 +14,16 @@
   <link rel="dns-prefetch" href="https://eziozhao.com">
   <title>TCP的三次握手和四次挥手详解 | EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="TCP基本特点面向连接的可靠字节流服务。 建立连接——三次握手TCP建立连接时，需要经历下图所示的三次握手过程。  每一次握手都可以反映出不同的信息。 第一次握手 SYN标志提示TCP连接的服务端检查序列编号(seq)，该序列编号为TCP连接初始端(一般是客户端)的初始序列编号。客户端通过SYN&#x3D;1来告诉服务端它想要建立连接。SYN&#x3D;1的报文段不携带数据，但是也要消耗一个序号。 seq是基于时钟生">
+  <meta name="description" content="TCP基本特点面向连接的可靠字节流服务。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP的三次握手和四次挥手详解">
 <meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;article&#x2F;a44e94be.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="TCP基本特点面向连接的可靠字节流服务。 建立连接——三次握手TCP建立连接时，需要经历下图所示的三次握手过程。  每一次握手都可以反映出不同的信息。 第一次握手 SYN标志提示TCP连接的服务端检查序列编号(seq)，该序列编号为TCP连接初始端(一般是客户端)的初始序列编号。客户端通过SYN&#x3D;1来告诉服务端它想要建立连接。SYN&#x3D;1的报文段不携带数据，但是也要消耗一个序号。 seq是基于时钟生">
+<meta property="og:description" content="TCP基本特点面向连接的可靠字节流服务。">
 <meta property="og:image" content="https:&#x2F;&#x2F;gitee.com&#x2F;eziozhao&#x2F;image&#x2F;raw&#x2F;master&#x2F;Img&#x2F;20210210212551.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;gitee.com&#x2F;eziozhao&#x2F;image&#x2F;raw&#x2F;master&#x2F;Img&#x2F;20210211194514.jpg">
 <meta property="article:published_time" content="2021-02-10T11:33:07.000Z">
-<meta property="article:modified_time" content="2021-02-12T11:26:33.992Z">
+<meta property="article:modified_time" content="2021-02-12T11:35:30.816Z">
 <meta property="article:author" content="Ezio Zhao">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
@@ -170,6 +170,8 @@
     <div class="article-entry" itemprop="articleBody">
 	  
         <h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h4 id="基本特点"><a href="#基本特点" class="headerlink" title="基本特点"></a>基本特点</h4><p>面向连接的可靠字节流服务。</p>
+<a id="more"></a>
+
 <h4 id="建立连接——三次握手"><a href="#建立连接——三次握手" class="headerlink" title="建立连接——三次握手"></a>建立连接——三次握手</h4><p>TCP建立连接时，需要经历下图所示的三次握手过程。</p>
 <p><img src="https://gitee.com/eziozhao/image/raw/master/Img/20210210212551.jpg" alt="三次握手"></p>
 <p>每一次握手都可以反映出不同的信息。</p>
