@@ -12,22 +12,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://eziozhao.com">
-  <title>带你看看Java中String对象不得不说的那些事 | EzioZhao</title>
+  <title>EzioZhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言String是Java中十分常用的类，在面试题中也是出镜率很高的常客，本文将我自己学习中遇到的一些问题进行整理，如果有误，欢迎指正。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="带你看看Java中String对象不得不说的那些事">
-<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;article&#x2F;b685e237.html">
+  <meta name="description" content="记录每天的进步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EzioZhao">
+<meta property="og:url" content="https:&#x2F;&#x2F;eziozhao.com&#x2F;page&#x2F;2&#x2F;index.html">
 <meta property="og:site_name" content="EzioZhao">
-<meta property="og:description" content="前言String是Java中十分常用的类，在面试题中也是出镜率很高的常客，本文将我自己学习中遇到的一些问题进行整理，如果有误，欢迎指正。">
-<meta property="og:image" content="https:&#x2F;&#x2F;gitee.com&#x2F;eziozhao&#x2F;image&#x2F;raw&#x2F;master&#x2F;Img&#x2F;20201217221631.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;gitee.com&#x2F;eziozhao&#x2F;image&#x2F;raw&#x2F;master&#x2F;Img&#x2F;20201217224254.png">
-<meta property="article:published_time" content="2020-12-16T13:55:48.000Z">
-<meta property="article:modified_time" content="2020-12-29T08:03:29.189Z">
+<meta property="og:description" content="记录每天的进步">
 <meta property="article:author" content="Ezio Zhao">
-<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;gitee.com&#x2F;eziozhao&#x2F;image&#x2F;raw&#x2F;master&#x2F;Img&#x2F;20201217221631.png">
   
     <link rel="alternative" href="/atom.xml" title="EzioZhao" type="application/atom+xml">
   
@@ -149,88 +143,30 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-一文秒懂String对象的那些事" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-使用zerotier设置虚拟局域网-并配置moon优化使用体验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      带你看看Java中String对象不得不说的那些事
+    <h1 itemprop="name">
+      <a class="article-title" href="/article/c783d70.html">使用zerotier配置moon结点优化使用体验</a>
     </h1>
   
 
         
-        <a href="/article/b685e237.html" class="archive-article-date">
-  	<time datetime="2020-12-16T13:55:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-16</time>
+        <a href="/article/c783d70.html" class="archive-article-date">
+  	<time datetime="2020-01-03T09:02:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
 	  
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>String是Java中十分常用的类，在面试题中也是出镜率很高的常客，本文将我自己学习中遇到的一些问题进行整理，如果有误，欢迎指正。</p>
-<a id="more"></a>
-
-<h2 id="String对象判等"><a href="#String对象判等" class="headerlink" title="String对象判等"></a>String对象判等</h2><p>千万不要用 <code>==</code> 去判断String对象是否相等，<code>==</code>比较的是地址。JVM只会共享字符串常量，因此，即使是“看起来”值相同的字符串，用<code>==</code>判断也可能不相等。</p>
-<p>举例来说，下面这段代码中，变量x和y都指向了常量池中共享的<code>&quot;a&quot;</code>，地址相同，但是<code>z</code>是Java堆中的新建对象的引用，其地址与<code>x</code>不同，所以返回了<code>false</code>。</p>
-<p>并且每次<code>new</code>一个<code>String</code>对象时，即使字符串内容相同，也会新开辟一片空间存储对象，因此<code>z</code>和<code>zCopy</code>地址也是不用的。</p>
-<p>这部分的细节原理在下一部分中解释。总而言之，如果你只是想判断两个String对象的内容是否一样，请使用<code>x.equals(z)</code>的形式。</p>
-<p><strong>代码一</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String x = <span class="string">"a"</span>;</span><br><span class="line">String y = <span class="string">"a"</span>;</span><br><span class="line">String z = <span class="keyword">new</span> String(<span class="string">"a"</span>);</span><br><span class="line">String zCopy = <span class="keyword">new</span> String(<span class="string">"a"</span>);</span><br><span class="line">System.out.println(x==y);<span class="comment">//true</span></span><br><span class="line">System.out.println(x==z);<span class="comment">//false</span></span><br><span class="line">System.out.println(z==zCopy);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="String与常量池"><a href="#String与常量池" class="headerlink" title="String与常量池"></a>String与常量池</h2><p><strong>我们在给String类型的引用赋值的时候会先看常量池中是否存在这个字符串对象的引用，若有就直接返回这个引用，若没有，就在堆里创建这个字符串对象并在字符串常量池中记录下这个引用。</strong></p>
-<p><strong>注意：常量池中存放的是引用，并不是实例！！！</strong></p>
-<p>下面结合具体代码来理解这段话，看下面这段代码</p>
-<p><strong>代码二</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String x = <span class="string">"a"</span>;</span><br><span class="line">String y = <span class="string">"a"</span> + <span class="string">"b"</span>;</span><br><span class="line">String z = <span class="string">"a"</span>;</span><br></pre></td></tr></table></figure>
-
-<p>用<code>javap -v -c</code>对<code>.class</code>文件进行反编译后，得到如下结果</p>
-<p><img src="https://gitee.com/eziozhao/image/raw/master/Img/20201217221631.png" alt="image-20201217221631030"></p>
-<p>可以看到，常量池中最中只保留了一份<code>&quot;a&quot;</code>的引用。因为在<code>String z = &quot;a&quot;;</code>执行时，字符串常量池中已经有<code>&quot;a&quot;</code>的引用了，不会重复创建。</p>
-<p>同时我们注意到，对应<code>String y = &quot;a&quot; + &quot;b&quot;;</code>这条语句，因为”a”和”b”都是编译器就能确定的常量，所以常量池只保留了最终计算的结果，并没有单独保留<code>&quot;b&quot;</code>。</p>
-<p>我们将代码稍作修改，然后再次反编译。</p>
-<p><strong>代码三</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String witcher = <span class="string">"Geralt"</span>;</span><br><span class="line">String sorceress = <span class="string">"Yennefer"</span>;</span><br><span class="line">String date = witcher + sorceress;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com/eziozhao/image/raw/master/Img/20201217224254.png" alt="image-20201217224254711"></p>
-<p>可以看出，最终常量池只存储了<code>&quot;Geralt&quot;</code>和<code>&quot;Yennefer&quot;</code>两个引用，而没有存放拼接的结果。因为<code>witcher</code>和<code>sorceress</code>变量要运行时才能确定。<strong>但是如果将变量<code>witcher</code>和<code>sorceress</code>都声明为<code>final</code>，那编译期就可以确定，因此拼接结果的引用信息也会放入常量池。</strong></p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>对于字符串表达式而言</p>
-<p>1、对于编译期能直接确定的值（字面量、声明为final的变量），会直接将表达式的结果放入常量池。</p>
-<p>2、如果编译期不能直接直接确定（非final的变量），那么只将已经声明字符串字面常量放入常量池，表达式的结果不放入常量池。</p>
-<p>关于常量池的更多介绍欢迎查看我的另一篇博客<a href="https://eziozhao.com/article/7df7aca7.html">一张图秒懂JVM内存区域的划分</a></p>
-<p><strong>另一个出镜率很高的问题是如下的这段代码创建了几个对象？</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="keyword">new</span> String(<span class="string">"xyz"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>关于这个问题网上众说纷纭，这里放上一种比较靠谱的说法。参考自R神的博客<a href="https://www.iteye.com/blog/rednaxelafx-774673" target="_blank" rel="noopener">请别再拿“String s = new String(“xyz”);创建了多少个String实例”来面试了吧</a></p>
-<p>首先，换个问法，这段代码在运行时涉及几个String实例？</p>
-<p>一种合理的解释是：两个，一个是字符串字面量”xyz”所对应的、驻留（intern）在一个全局共享的字符串常量池中的实例，另一个是通过new String(String)创建并初始化的、内容与”xyz”相同的实例。</p>
-<h2 id="StringBuilder与StringBuffer"><a href="#StringBuilder与StringBuffer" class="headerlink" title="StringBuilder与StringBuffer"></a>StringBuilder与StringBuffer</h2><p>如果你查看过源码，就会发现String对象是被<code>final</code>修饰的，这意味着它是不可变的。因此，当我们拼接字符串时，会产生新的对象。为此，设计者们提供了<code>StringBuilder</code>类来避免产生过多的中间对象。当我们用<code>+</code>拼接字符串时，编译器会自动帮我们使用StringBuilder进行优化。</p>
-<p>这次使用jad对<strong>代码二</strong>进行反编译（直接用<code>javap -v</code>也可以，但是使用jad产生的结果更容易看懂)</p>
-<p>得到如下结果 可以看到编译器自动为我们使用了<code>StringBuilder</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String witcher = <span class="string">"Geralt"</span>;</span><br><span class="line">String sorceress = <span class="string">"Yennefer"</span>;</span><br><span class="line">String date = (<span class="keyword">new</span> StringBuilder()).append(witcher).append(sorceress).toString();</span><br></pre></td></tr></table></figure>
-
-<p>有人会说，既然编译器已经优化，我们就直接使用<code>+</code>拼接字符串就可以啊，为什么还要用<code>StringBuilder</code>?</p>
-<p>来看这段代码</p>
-<p><strong>代码四</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String witcher = <span class="string">"Geralt"</span>;</span><br><span class="line">String sorceress = <span class="string">"Yennefer"</span>;</span><br><span class="line">String res = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) &#123;</span><br><span class="line">	res += sorceress;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>对其反编译，可得</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String witcher = <span class="string">"Geralt"</span>;</span><br><span class="line">String sorceress = <span class="string">"Yennefer"</span>;</span><br><span class="line">String res = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)</span><br><span class="line">	res = (<span class="keyword">new</span> StringBuilder()).append(res).append(sorceress).toString();</span><br></pre></td></tr></table></figure>
-
-<p>可以看出，每一轮的for循环都新建了一个<code>StringBuilder</code>，这是完全没有必要的。因此，我们应该在for循环外部先定义一个<code>StringBuilder</code>对象，这样只新建了一个对象就完成了任务，效率大增。</p>
-<p><code>StringBuffer</code>和<code>StringBuilder</code>基本相同，但是它保证了线程安全，如果有多线程需求，可以按需使用。</p>
-<h2 id="String-intern"><a href="#String-intern" class="headerlink" title="String.intern()"></a>String.intern()</h2><p>我们用下面这段代码来分析intern的作用</p>
-<p><strong>代码五</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String witcher1 = <span class="keyword">new</span> String(<span class="string">"Geralt"</span>);</span><br><span class="line">String witcher2 = <span class="string">"Geralt"</span>;</span><br><span class="line">System.out.println(witcher1 == witcher2);<span class="comment">//false </span></span><br><span class="line">System.out.println(witcher1.intern() == witcher2);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<p>第三行显然是false，这在本文最开始已经解释过。</p>
-<p>但是<code>witcher1</code>调用<code>intern</code>之后，地址就与<code>witcher2</code>相同了，这是为什么？</p>
-<p>原来，当一个对象调用<code>intern</code>方法时，会查看常量池是否有与当前对象内容相同的字面量，如果有，就直接返回常量池中的引用信息，如果没有，就在常量池中补充当前对象的字面量，然后返回引用。</p>
-<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>以上就是<code>String</code>类型经常引起疑惑的一些知识点。总结不易，如果有帮到你，希望可以点个赞，谢谢~</p>
-
+        <h1 id="zerotier介绍"><a href="#zerotier介绍" class="headerlink" title="zerotier介绍"></a>zerotier介绍</h1><p>这是一款能够帮助你轻松实现虚拟局域网的软件。通过它，你可以将100台设备(免费版账号)加入自己创建的虚拟局域网。且该软件支持支持 Windows、macOS、Linux 三大桌面平台，iOS、Android 两大移动平台。<a href="https://www.zerotier.com/" target="_blank" rel="noopener">官网地址</a></p>
+        
       
 
 
@@ -242,33 +178,7 @@
 
 <!-- #版权基础设定：0-关闭声明； 1-文章对应的md文件里有declare: true属性，才有版权声明； 2-所有文章均有版权声明 -->
 
-  <div class="declare">
-    <strong class="author">本文作者：</strong>
-    
-      Ezio Zhao
-    
-    <br>
-    <strong class="create-time">发布时间：</strong>
-    2020-12-16
-    <br>
-    <strong class="update-time">最后更新：</strong>
-    2020-12-29
-    <br>
-    <strong class="article-titles">本文标题：</strong>
-    <a href="https://eziozhao.com/article/b685e237.html" title="带你看看Java中String对象不得不说的那些事" target="_blank">带你看看Java中String对象不得不说的那些事</a>
-    <br>
-    <strong class="article-url">本文链接：</strong>
-    <a href="https://eziozhao.com/article/b685e237.html" title="带你看看Java中String对象不得不说的那些事" target="_blank">https://eziozhao.com/article/b685e237.html</a>
-    <br>
-    <strong class="copyright">版权声明：</strong>
-    本作品采用
-    <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议">CC BY-NC-SA 4.0</a>
-    许可协议进行许可。转载请注明出处！
-    
-      <br>
-      <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"/></a>
-    
-  </div>
+  <div class="declare" hidden="hidden"></div>
 
 <!-- 添加版权声明》 -->
           
@@ -282,14 +192,29 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络应用</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术分享//" class="article-tag-list-link color5">技术分享</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/article/c783d70.html">展开全文 >></a>
+        </p>
       
 
       
@@ -297,27 +222,6 @@
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/article/56265d99.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          天天都用浏览器的你知道输入网址后发生了什么吗？
-        
-      </div>
-    </a>
-  
-  
-    <a href="/article/7df7aca7.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">详解JVM内存区域划分（附图）</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -337,34 +241,12 @@
 
 
 
-  
-
-  
-
-  
 
   
   
-  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: 'ff2070a2cd54acf99e43',
-  	clientSecret: '88520fd1d0244b4dc73127dd8053f755fd58e759',
-  	repo: 'gitalk',
-  	owner: 'eziozhao',
-  	admin: ['eziozhao'],
-  	id: 'Wed Dec 16 2020 21:55:48 GMT+0800',
-  	distractionFreeMode: 'true'
-})
-gitalk.render('gitalk-container') 
-}
-</script>
-  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -388,8 +270,8 @@ gitalk.render('gitalk-container')
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
