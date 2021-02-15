@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="EzioZhao">
 <meta property="og:description" content="简介Swagger是一种REST APIs的简单但强大的表示方式，标准的，语言无关，这种表示方式不但人可读，而且机器可读。可以作为REST APIs的交互式文档，也可以作为REST APIs的形式化的接口描述，生成客户端和服务端的代码。">
 <meta property="article:published_time" content="2020-04-12T12:22:32.000Z">
-<meta property="article:modified_time" content="2020-09-13T08:24:53.673Z">
+<meta property="article:modified_time" content="2021-02-15T09:09:30.156Z">
 <meta property="article:author" content="Ezio Zhao">
 <meta property="article:tag" content="springboot">
 <meta name="twitter:card" content="summary">
@@ -177,10 +177,9 @@
 <li>@ApiOperation 修饰请求的方法，生成方法对应的文档<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Api</span>(tags = <span class="string">"PostBlogController"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"api/blog/"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PostBlogController</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> PostBlogService postBlogService;	</span><br><span class="line">	<span class="meta">@ApiOperation</span>(<span class="string">"新增博客"</span>)</span><br><span class="line">	<span class="meta">@ApiImplicitParam</span>(name = <span class="string">"postVO"</span>, value = <span class="string">"新增博客VO"</span>, required = <span class="keyword">true</span>, dataType = <span class="string">"PostVO"</span>)</span><br><span class="line">	<span class="meta">@PostMapping</span>(<span class="string">"add"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ServerResponse <span class="title">blogAdd</span><span class="params">(@Valid @RequestBody PostVO postVO, BindingResult errors)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (errors.hasErrors()) &#123;</span><br><span class="line">			<span class="comment">//异常处理</span></span><br><span class="line">			List&lt;String&gt; errorList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">			errors.getAllErrors().stream().forEach(error -&gt; errorList.add(error.getDefaultMessage()));</span><br><span class="line">			<span class="keyword">return</span> ServerResponse.createByErrorMessage(errorList.get(<span class="number">0</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> postBlogService.addPost(postVO);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-
 </li>
 </ul>
-<p>运行项目，访问<a href="http://localhost:8866/swagger-ui.html" target="_blank" rel="noopener">http://localhost:8080/swagger-ui.html</a>即可</p>
+<p>​<br>运行项目，访问<a href="http://localhost:8866/swagger-ui.html" target="_blank" rel="noopener">http://localhost:8080/swagger-ui.html</a>即可</p>
 
       
 
@@ -203,7 +202,7 @@
     2020-04-12
     <br>
     <strong class="update-time">最后更新：</strong>
-    2020-09-13
+    2021-02-15
     <br>
     <strong class="article-titles">本文标题：</strong>
     <a href="https://eziozhao.com/article/ef3b9f6e.html" title="SpringBoot使用Swagger生成API文档" target="_blank">SpringBoot使用Swagger生成API文档</a>
@@ -454,6 +453,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JAVA源码</a>
               </li>
             
             <div class="clearfix"></div>
