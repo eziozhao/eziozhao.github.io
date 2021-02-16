@@ -1265,7 +1265,7 @@ html {
 }
 
 pre .comment {
-  color: #75715e
+  color: #ffec8b
 }
 
 pre .class .params,
@@ -1279,7 +1279,7 @@ pre .doctype,
 pre .function,
 pre .params,
 pre .tag {
-  color: #fff
+  color: #ff6481
 }
 
 pre .at_rule,
@@ -1305,7 +1305,7 @@ pre .value {
 }
 
 pre .number {
-  color: #7163d7
+  color: #ffe4b5
 }
 
 pre .css~* .id,
@@ -2319,7 +2319,7 @@ pre .id {
 
 .article-inner h4 {
   letter-spacing: .140625em;
-  text-transform: uppercase
+  text-transform: none
 }
 
 .article-inner h6 {
