@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="EzioZhao">
+  <meta name="keywords" content="Python,Python3,爬虫,Spider,Scrapy,Crawl,Crawler,数据,爬取,抓取,逆向,反编译,程序员,编程,技术,Go,Golang,Java,Spring,SpringBoot,JavaScript,分享,博客,Blog,eziozhao">
+  
+    <meta name="description" content="前言HashMap使用键值对的存储结构。其底层使用数组实现，应用链地址散列法，并配合红黑树，实现了高效的查找逻辑。本文的HashMap源码基于jdk1.8。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="可能是最适合新手看的HashMap源码分析">
+<meta property="og:url" content="https://eziozhao.github.io/article/d773541b.html">
+<meta property="og:site_name" content="EzioZhao‘s Blog">
+<meta property="og:description" content="前言HashMap使用键值对的存储结构。其底层使用数组实现，应用链地址散列法，并配合红黑树，实现了高效的查找逻辑。本文的HashMap源码基于jdk1.8。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.seovx.com/d/?mom=302">
+<meta property="article:published_time" content="2021-02-17T10:05:48.000Z">
+<meta property="article:modified_time" content="2022-01-30T14:21:01.181Z">
+<meta property="article:author" content="EzioZhao">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.seovx.com/d/?mom=302">
+  
+  
+  <title>可能是最适合新手看的HashMap源码分析 - EzioZhao‘s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"eziozhao.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>EzioZhao&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://api.isoyu.com/bing_images.php') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="可能是最适合新手看的HashMap源码分析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-17 18:05" pubdate>
+        February 17, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      12k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      100 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">可能是最适合新手看的HashMap源码分析</h1>
+            
+            <div class="markdown-body">
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>HashMap使用键值对的存储结构。其底层使用数组实现，应用链地址散列法，并配合红黑树，实现了高效的查找逻辑。本文的HashMap源码基于jdk1.8。</p>
+<span id="more"></span>
+
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>下文经常提到的<strong>桶</strong>就是其实就是table数组中的任意一个位置</p>
+<p>这里变量的含义不理解没关系，看完后面的方法调用就知道了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//table的初始容量16</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>;<br><span class="hljs-comment">//最大容量</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MAXIMUM_CAPACITY = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">30</span>;<br><span class="hljs-comment">//默认装载因子0.75 当构造器没提供装载因子时 令loadFactor=0.75f</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="hljs-number">0.75f</span>;<br><span class="hljs-comment">//table的一个桶中&gt;8个结点时 把桶中的链表转化成红黑树 </span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TREEIFY_THRESHOLD = <span class="hljs-number">8</span>;<br><span class="hljs-comment">//桶中结点&lt;=6个时 把红黑树恢复成链表</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> UNTREEIFY_THRESHOLD = <span class="hljs-number">6</span>;<br><span class="hljs-comment">//table长度超过64时 才进行树化 否则即使单个桶大于等于8个结点也只是调用resize()进行扩容</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MIN_TREEIFY_CAPACITY = <span class="hljs-number">64</span>;<br><span class="hljs-comment">//底层数组</span><br><span class="hljs-keyword">transient</span> Node&lt;K,V&gt;[] table;<br><span class="hljs-comment">//entrySet缓存</span><br><span class="hljs-keyword">transient</span> Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet;<br><span class="hljs-comment">//键值对的数量</span><br><span class="hljs-keyword">transient</span> <span class="hljs-keyword">int</span> size;<br><span class="hljs-comment">//总调整次数</span><br><span class="hljs-keyword">transient</span> <span class="hljs-keyword">int</span> modCount;<br><span class="hljs-comment">//扩容的门槛 超过这个值需要扩容 其值capacity * load_factor</span><br><span class="hljs-keyword">int</span> threshold;<br><span class="hljs-comment">//装载因子</span><br><span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> loadFactor;<br></code></pre></td></tr></table></figure>
+
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>构造方法总共有4个 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java">   <span class="hljs-comment">//1、默认构造方法 </span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">()</span> </span>&#123;<br>       <span class="hljs-keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR; <span class="hljs-comment">// all other fields defaulted</span><br>   &#125;<br><span class="hljs-comment">//2、自定义初始容量的构造方法 使用默认装载因子 调用了构造方法3</span><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity)</span> </span>&#123;<br>       <span class="hljs-keyword">this</span>(initialCapacity, DEFAULT_LOAD_FACTOR);<br>   &#125;<br><span class="hljs-comment">//3、自定义初始容量和装载因子</span><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity, <span class="hljs-keyword">float</span> loadFactor)</span> </span>&#123;<br>       <span class="hljs-keyword">if</span> (initialCapacity &lt; <span class="hljs-number">0</span>)<br>           <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;Illegal initial capacity: &quot;</span> +<br>                                              initialCapacity);<br>       <span class="hljs-keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)<br>           initialCapacity = MAXIMUM_CAPACITY;<br>       <span class="hljs-keyword">if</span> (loadFactor &lt;= <span class="hljs-number">0</span> || Float.isNaN(loadFactor))<br>           <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;Illegal load factor: &quot;</span> +<br>                                              loadFactor);<br>       <span class="hljs-keyword">this</span>.loadFactor = loadFactor;<br>       <span class="hljs-comment">//扩容门槛设置 这个值后期被当作了table容量 </span><br>       <span class="hljs-keyword">this</span>.threshold = tableSizeFor(initialCapacity);<br>   &#125;<br><span class="hljs-comment">//4、以一个map的键值对为基础构建hashmap</span><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">(Map&lt;? extends K, ? extends V&gt; m)</span> </span>&#123;<br>       <span class="hljs-keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR;<br>       putMapEntries(m, <span class="hljs-keyword">false</span>);<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="tableSizeFor-int-cap-方法"><a href="#tableSizeFor-int-cap-方法" class="headerlink" title="tableSizeFor(int cap) 方法"></a>tableSizeFor(int cap) 方法</h3><p>在构造方法3中，threshold是通过<code>tableSizeFor</code>计算的，看一下这个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">tableSizeFor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cap)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> n = cap - <span class="hljs-number">1</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">1</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">2</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">4</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">8</span>;<br>    n |= n &gt;&gt;&gt; <span class="hljs-number">16</span>;<br>    <span class="hljs-keyword">return</span> (n &lt; <span class="hljs-number">0</span>) ? <span class="hljs-number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该方法的作用是找到一个最小k使得<code>2^k&gt;=cap</code>，这一操作使得不论构造函数中传入的initialCapacity是多少，最终都会被<code>tableSizeFor</code>处理成<code>2^k</code>形式 ,这一操作后续会解释作用。</p>
+<p>简单解释一下为什么tableSizeFor可以实现这种效果。假设cap=6，则n=6-1=5。n的二进制即为<code>101</code>，无符号右移之后变为<code>010</code>，则<code>101 | 010 = 111</code>。新的n为<code>111</code>，那么后续再移位之后，因为进行的是<code>或</code>操作，所以每次得到的结果都是<code>111</code>。最终return了n+1，即<code>1000</code>对应十进制的8，也就是<code>2^3</code>。</p>
+<p>可以看出，每次的移位取或操作都让n的二进制高位开始的连续1的数量翻倍，因为在构造函数3中限制了initialCapacity的最大值为<code>MAXIMUM_CAPACITY=1 &lt;&lt; 30</code>，所以最极端的情况下，n最终的二进制会对应30个1，最后再加1，正好是<code>2^30</code>。</p>
+<p>那么第一步取n的时候，为什么要令n=cap-1呢？假如一开始cap就是<code>2^k</code>，那么如果一开始不进行减1的操作，最终的n会等于<code>2^(k+1)</code>，这显然不是我们想要的结果。所以先让cap减1，这时n对应的二进制就是k个1,移位取或操作对其没有影响。最后return时，n+1又变回了<code>2^k</code>。</p>
+<h3 id="put-K-key-V-value-方法"><a href="#put-K-key-V-value-方法" class="headerlink" title="put(K key, V value)方法"></a>put(K key, V value)方法</h3><p>存入键值对的方法，实际是通过putVal方法实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> V <span class="hljs-title">put</span><span class="hljs-params">(K key, V value)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> putVal(hash(key), key, value, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="hash-Object-key-方法"><a href="#hash-Object-key-方法" class="headerlink" title="hash(Object key)方法"></a>hash(Object key)方法</h4><p>计算key的hash值，因为key.hashCode是一个int值，<code>(h = key.hashCode()) ^ (h &gt;&gt;&gt; 16)</code>相当于把高16位和低16位进行异或，使分布更松散。具体原因可以参看知乎的这个<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20733617">高赞答案</a>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hash</span><span class="hljs-params">(Object key)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> h;<br>    <span class="hljs-keyword">return</span> (key == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="putVal方法"><a href="#putVal方法" class="headerlink" title="putVal方法"></a>putVal方法</h4><p>介绍putVal前，我们先看一张图，直观的感受一下hashmap是如何存储数据的。可以看出当table中的一个桶的结点数目超过临界值时，会把原先的链表转化成红黑树。这里的转化还有个前提条件是table的长度要大于等于64，图中为了方便没有体现这点。</p>
+<p><img src="https://gitee.com/eziozhao/image/raw/master/Img/20210220220850.png" srcset="/img/loading.gif" lazyload alt="image-20210220220849961"></p>
+<h5 id="方法流程"><a href="#方法流程" class="headerlink" title="方法流程"></a>方法流程</h5><ol>
+<li>如果一开始table为空则调用扩容方法初始化table</li>
+<li>如果待插入的桶为空则直接插入</li>
+<li>如果这个桶已经有元素，并且第一个元素的hash值和待插入元素相同，转到后续处理，否则转到4</li>
+<li>处理hash冲突，如果是树节点，则按照红黑树逻辑处理；如果是普通结点，则遍历链表寻找是否存在与待插入元素相同的key。如果找到了key，跳出遍历，转到5，否则转到6</li>
+<li>根据onlyIfAbsent判断是否需要更新旧的value，return oldValue之后方法结束</li>
+<li>在链表末尾插入新结点，并判断结点数量是否到达临界值，达到临界值则树化。转到7</li>
+<li>结点总数加1，并判断是否需要扩容</li>
+</ol>
+<p>下面看具体代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">final</span> V <span class="hljs-title">putVal</span><span class="hljs-params">(<span class="hljs-keyword">int</span> hash, K key, V value, <span class="hljs-keyword">boolean</span> onlyIfAbsent,</span></span><br><span class="hljs-params"><span class="hljs-function">               <span class="hljs-keyword">boolean</span> evict)</span> </span>&#123;<br>    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="hljs-keyword">int</span> n, i;<br>    <span class="hljs-comment">//如果table还没进行初始化 调用resize进行初始化</span><br>    <span class="hljs-keyword">if</span> ((tab = table) == <span class="hljs-keyword">null</span> || (n = tab.length) == <span class="hljs-number">0</span>)<br>        n = (tab = resize()).length;<br>    <span class="hljs-comment">//如果当前hash值对应的位置是空的 直接把这个键值对放进去</span><br>    <span class="hljs-comment">//(n - 1) &amp; hash 相当于 hash % n, 具体原因后文介绍</span><br>    <span class="hljs-keyword">if</span> ((p = tab[i = (n - <span class="hljs-number">1</span>) &amp; hash]) == <span class="hljs-keyword">null</span>)<br>        tab[i] = newNode(hash, key, value, <span class="hljs-keyword">null</span>);<br>    <span class="hljs-comment">//如果这个位置已经有元素了 使用链地址法散列</span><br>    <span class="hljs-keyword">else</span> &#123;<br>        Node&lt;K,V&gt; e; K k;<br>        <span class="hljs-comment">//如果table当前位置的第一个结点p的key与待插入的key相同</span><br>        <span class="hljs-comment">//保存p的值 后续直接更新value即可</span><br>        <span class="hljs-keyword">if</span> (p.hash == hash &amp;&amp;<br>            ((k = p.key) == key || (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k))))<br>            e = p;<br>        <span class="hljs-comment">//如果p是树节点，则按照树的逻辑插入</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p <span class="hljs-keyword">instanceof</span> TreeNode)<br>            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="hljs-keyword">this</span>, tab, hash, key, value);<br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">//否则遍历当前位置对应的链表 找到插入位置</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> binCount = <span class="hljs-number">0</span>; ; ++binCount) &#123;<br>                <span class="hljs-comment">//如果到了链表末尾还没找到key值相同的结点，则把新节点放在链表末尾</span><br>                <span class="hljs-keyword">if</span> ((e = p.next) == <span class="hljs-keyword">null</span>) &#123;<br>                    <span class="hljs-comment">//存入末尾</span><br>                    p.next = newNode(hash, key, value, <span class="hljs-keyword">null</span>);<br>                    <span class="hljs-comment">//如果链表长度超过临界值 将链表树化</span><br>                    <span class="hljs-comment">//bincount少算了第一个结点,所以需要减1</span><br>                    <span class="hljs-comment">//需要注意 这时bincount并没有算newNode </span><br>                    <span class="hljs-comment">//所以树化时 实际上已经有9个结点</span><br>                    <span class="hljs-keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="hljs-number">1</span>) <span class="hljs-comment">// -1 for 1st</span><br>                        treeifyBin(tab, hash);<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-comment">//在链表中找到了与待插入key相同的元素 结束循环 后续直接修改value</span><br>                <span class="hljs-keyword">if</span> (e.hash == hash &amp;&amp;<br>                    ((k = e.key) == key || (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k))))<br>                    <span class="hljs-keyword">break</span>;<br>                p = e;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//e不等于null说明链表中有和待插入key一样的键值 所以直接用新的value更新旧值</span><br>        <span class="hljs-keyword">if</span> (e != <span class="hljs-keyword">null</span>) &#123; <span class="hljs-comment">// existing mapping for key</span><br>            V oldValue = e.value;<br>            <span class="hljs-comment">//onlyIfAbsent默认false表示当待插入key已经存在时 用新的value更新oldValue</span><br>            <span class="hljs-comment">//否则保持原先的key-value不变</span><br>            <span class="hljs-keyword">if</span> (!onlyIfAbsent || oldValue == <span class="hljs-keyword">null</span>)<br>                e.value = value;<br>            <span class="hljs-comment">//hashmap中这个方法为空 LinkedHashMap才会用到</span><br>            afterNodeAccess(e);<br>            <span class="hljs-comment">//返回旧值</span><br>            <span class="hljs-keyword">return</span> oldValue;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//map中不存在与待插入元素相同的key时 把修改次数加1</span><br>    ++modCount;<br>    <span class="hljs-comment">//结点数加1 如果超过了threshold就扩容</span><br>    <span class="hljs-keyword">if</span> (++size &gt; threshold)<br>        resize();<br>    <span class="hljs-comment">//这个方法也是LinkedHashMap才会用到</span><br>    afterNodeInsertion(evict);<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>现在解释一下上文注释中提到的问题</p>
+<p><strong>(n - 1) &amp; hash的作用</strong></p>
+<p>首先hash是一个int范围的数，在java中即为-2147483648 至2147483647。如果直接把所有的hash都对应到table数组的索引，那<code>table.length</code>要超过40亿！这显然不科学。因此，我们可以把<code>hash % n</code>当作索引值，这样范围就小很多了。</p>
+<p>而对于计算机来说，&amp;运算要比%快。并且，<strong>只有table的长度是2的k次幂时</strong>，<code>(n - 1) &amp; hash</code>才等于<code>hash % n</code>。这又是为什么？首先，当<code>n = 2^k</code>时，n-1对应的2进制是k个1，所以<code>(n - 1) &amp; hash</code>取到的是hash中的最后k位的值，因为hash的二进制中，倒数第k位之前的部分代表的值一定是n的倍数，所以必然为0，因此最后k位代表的值正是<code>hash % n</code>的结果。<strong>这也解释了为什么table的长度一定要是2的k次幂。</strong></p>
+<p>下面给出示意图，以n=8，hash=75为例</p>
+<p><img src="https://gitee.com/eziozhao/image/raw/master/Img/20210220172321.png" srcset="/img/loading.gif" lazyload alt="image-20210220172321726"></p>
+<h4 id="resize-扩容方法"><a href="#resize-扩容方法" class="headerlink" title="resize() 扩容方法"></a>resize() 扩容方法</h4><p>用于初始化table或者将table容量翻倍</p>
+<h5 id="方法流程-1"><a href="#方法流程-1" class="headerlink" title="方法流程"></a>方法流程</h5><ol>
+<li>旧容量大于0，判断容量翻倍后是否超过上限，如果不超过则翻倍。如果旧门槛翻倍后溢出，转到4</li>
+<li>旧容量等于0，旧门槛大于0时，让新容量等于旧门槛。转到4</li>
+<li>旧容量和旧门槛都是0，则用默认值进行初始化</li>
+<li>用newCap * loadFactor计算出新门槛</li>
+<li>按照新容量建立新数组</li>
+<li>将旧数组的元素映射到新数组，并且将原来桶中的链表拆成两部分，低位的还在原来桶的位置j，高位的放到oldCap+j的位置，oldCap是旧容量</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> Node&lt;K,V&gt;[] resize() &#123;<br>    Node&lt;K,V&gt;[] oldTab = table;<br>    <span class="hljs-comment">//旧容量</span><br>    <span class="hljs-keyword">int</span> oldCap = (oldTab == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : oldTab.length;<br>    <span class="hljs-comment">//旧门槛</span><br>    <span class="hljs-keyword">int</span> oldThr = threshold;<br>    <span class="hljs-keyword">int</span> newCap, newThr = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//旧容量大于0 说明已经初始化过 </span><br>    <span class="hljs-keyword">if</span> (oldCap &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">//旧容量超过了最大容量 直接设置门槛值为最大int 以后就不会扩容了</span><br>        <span class="hljs-keyword">if</span> (oldCap &gt;= MAXIMUM_CAPACITY) &#123;<br>            threshold = Integer.MAX_VALUE;<br>            <span class="hljs-keyword">return</span> oldTab;<br>        &#125;<br>        <span class="hljs-comment">//旧容量的2倍仍在最大容量之内且旧容量大于等于16 则将容量和门槛值都翻倍</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((newCap = oldCap &lt;&lt; <span class="hljs-number">1</span>) &lt; MAXIMUM_CAPACITY &amp;&amp;<br>                 oldCap &gt;= DEFAULT_INITIAL_CAPACITY)<br>            newThr = oldThr &lt;&lt; <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (oldThr &gt; <span class="hljs-number">0</span>) <br>        <span class="hljs-comment">//如果调用了含参的构造方法 第一次putVal时会进入这里 这时oldCap=0</span><br>        <span class="hljs-comment">//此时让新容量等于旧门槛值 新门槛值在后面算</span><br>        newCap = oldThr;<br>    <span class="hljs-keyword">else</span> &#123;               <br>        <span class="hljs-comment">//如果调用HashMap()构造方法会进入这个分支 oldCap和oldThr都是0 </span><br>        <span class="hljs-comment">//用默认值进行初始化</span><br>        newCap = DEFAULT_INITIAL_CAPACITY;<br>        newThr = (<span class="hljs-keyword">int</span>)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);<br>    &#125;<br>    <span class="hljs-comment">//newThr等于0可能是两种情况导致的</span><br>    <span class="hljs-comment">//其一 代码进入oldCap &gt; 0 分支后 由于newThr = oldThr &lt;&lt; 1;导致newThr溢出 变成0</span><br>    <span class="hljs-comment">//其二 代码进入oldThr &gt; 0 分支 没有计算newThr</span><br>    <span class="hljs-keyword">if</span> (newThr == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">//按公式计算newThr</span><br>        <span class="hljs-keyword">float</span> ft = (<span class="hljs-keyword">float</span>)newCap * loadFactor;<br>        newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (<span class="hljs-keyword">float</span>)MAXIMUM_CAPACITY ?<br>                  (<span class="hljs-keyword">int</span>)ft : Integer.MAX_VALUE);<br>    &#125;<br>    <span class="hljs-comment">//更新门槛值</span><br>    threshold = newThr;<br>    <span class="hljs-comment">//按照扩容后的容量新建数组</span><br>    <span class="hljs-meta">@SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span><br>        Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])<span class="hljs-keyword">new</span> Node[newCap];<br>    table = newTab;<br>    <span class="hljs-keyword">if</span> (oldTab != <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-comment">//遍历旧数组</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; oldCap; ++j) &#123;<br>            Node&lt;K,V&gt; e;<br>            <span class="hljs-keyword">if</span> ((e = oldTab[j]) != <span class="hljs-keyword">null</span>) &#123;<br>                oldTab[j] = <span class="hljs-keyword">null</span>;<br>                <span class="hljs-comment">//如果当前桶中只有一个元素 直接将他映射到新数组对应位置</span><br>                <span class="hljs-keyword">if</span> (e.next == <span class="hljs-keyword">null</span>)<br>                    newTab[e.hash &amp; (newCap - <span class="hljs-number">1</span>)] = e;<br>                <span class="hljs-comment">//如果是树节点 则对树进行拆分之后再映射</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (e <span class="hljs-keyword">instanceof</span> TreeNode)<br>                    ((TreeNode&lt;K,V&gt;)e).split(<span class="hljs-keyword">this</span>, newTab, j, oldCap);<br>                <span class="hljs-comment">//桶中不止一个元素 且不是树 则将桶中对应的链表元素按条件拆成两个链表</span><br>                <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// preserve order</span><br>                    Node&lt;K,V&gt; loHead = <span class="hljs-keyword">null</span>, loTail = <span class="hljs-keyword">null</span>;<br>                    Node&lt;K,V&gt; hiHead = <span class="hljs-keyword">null</span>, hiTail = <span class="hljs-keyword">null</span>;<br>                    Node&lt;K,V&gt; next;<br>                    <span class="hljs-keyword">do</span> &#123;<br>                        next = e.next;<br>                        <span class="hljs-comment">//假设oldCap = 2^k</span><br>                        <span class="hljs-comment">//则二进制hash值从低到高的第k+1位为0的进入这个分支</span><br>                        <span class="hljs-comment">//分支中就是链表连接操作</span><br>                        <span class="hljs-keyword">if</span> ((e.hash &amp; oldCap) == <span class="hljs-number">0</span>) &#123;<br>                            <span class="hljs-keyword">if</span> (loTail == <span class="hljs-keyword">null</span>)<br>                                loHead = e;<br>                            <span class="hljs-keyword">else</span><br>                                loTail.next = e;<br>                            loTail = e;<br>                        &#125;<br>                        <span class="hljs-comment">//二进制hash值从低到高的第k+1位为1的进入这个分支</span><br>                        <span class="hljs-keyword">else</span> &#123;<br>                            <span class="hljs-keyword">if</span> (hiTail == <span class="hljs-keyword">null</span>)<br>                                hiHead = e;<br>                            <span class="hljs-keyword">else</span><br>                                hiTail.next = e;<br>                            hiTail = e;<br>                        &#125;<br>                    &#125; <span class="hljs-keyword">while</span> ((e = next) != <span class="hljs-keyword">null</span>);<br>                    <span class="hljs-comment">//low链表在新数组中的位置其实和原数组一样</span><br>                    <span class="hljs-keyword">if</span> (loTail != <span class="hljs-keyword">null</span>) &#123;<br>                        loTail.next = <span class="hljs-keyword">null</span>;<br>                        newTab[j] = loHead;<br>                    &#125;<br>                    <span class="hljs-comment">//high链表在新数组中的位置比原数组大oldCap</span><br>                    <span class="hljs-keyword">if</span> (hiTail != <span class="hljs-keyword">null</span>) &#123;<br>                        hiTail.next = <span class="hljs-keyword">null</span>;<br>                        newTab[j + oldCap] = hiHead;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newTab;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="get-Object-key-方法"><a href="#get-Object-key-方法" class="headerlink" title="get(Object key)方法"></a>get(Object key)方法</h3><p>根据key获取value</p>
+<h5 id="方法流程-2"><a href="#方法流程-2" class="headerlink" title="方法流程"></a>方法流程</h5><ol>
+<li>根据key的hash值查找table对应的位置，如果不为空则转到2，否则直接返回null</li>
+<li>判断桶中第一个元素是不是想要的，如果是，直接返回，否则到3</li>
+<li>如果桶中结点不止一个，则树节点使用二叉平衡树的逻辑查找，普通结点遍历链表查找</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> V <span class="hljs-title">get</span><span class="hljs-params">(Object key)</span> </span>&#123;<br>    Node&lt;K,V&gt; e;<br>    <span class="hljs-keyword">return</span> (e = getNode(hash(key), key)) == <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">null</span> : e.value;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">final</span> Node&lt;K,V&gt; <span class="hljs-title">getNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> hash, Object key)</span> </span>&#123;<br>    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; first, e; <span class="hljs-keyword">int</span> n; K k;<br>    <span class="hljs-comment">//table不为空 且hash对应的位置不为空 进入分支</span><br>    <span class="hljs-keyword">if</span> ((tab = table) != <span class="hljs-keyword">null</span> &amp;&amp; (n = tab.length) &gt; <span class="hljs-number">0</span> &amp;&amp;<br>        (first = tab[(n - <span class="hljs-number">1</span>) &amp; hash]) != <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-comment">//先查看桶中第一个结点是不是想要的 如果是 直接返回</span><br>        <span class="hljs-keyword">if</span> (first.hash == hash &amp;&amp; <span class="hljs-comment">// always check first node</span><br>            ((k = first.key) == key || (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k))))<br>            <span class="hljs-keyword">return</span> first;<br>        <span class="hljs-comment">//第一个结点不是要找的 并且桶中不止一个结点 那么遍历桶中元素</span><br>        <span class="hljs-keyword">if</span> ((e = first.next) != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">//如果是树节点 调用树的查找方法 使用的是二叉平衡树查找的方法</span><br>            <span class="hljs-keyword">if</span> (first <span class="hljs-keyword">instanceof</span> TreeNode)<br>                <span class="hljs-keyword">return</span> ((TreeNode&lt;K,V&gt;)first).getTreeNode(hash, key);<br>            <span class="hljs-keyword">do</span> &#123;<br>                <span class="hljs-comment">//否则 遍历链表</span><br>                <span class="hljs-keyword">if</span> (e.hash == hash &amp;&amp;<br>                    ((k = e.key) == key || (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k))))<br>                    <span class="hljs-keyword">return</span> e;<br>            &#125; <span class="hljs-keyword">while</span> ((e = e.next) != <span class="hljs-keyword">null</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="getTreeNode-int-h-Object-k"><a href="#getTreeNode-int-h-Object-k" class="headerlink" title="getTreeNode(int h, Object k)"></a>getTreeNode(int h, Object k)</h4><p>getTreeNode是TreeNode类的方法，这里放上简化后的TreeNode类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TreeNode</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">LinkedHashMap</span>.<span class="hljs-title">Entry</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt; </span>&#123;<br>        TreeNode&lt;K,V&gt; parent;  <span class="hljs-comment">// red-black tree links</span><br>        TreeNode&lt;K,V&gt; left;<br>        TreeNode&lt;K,V&gt; right;<br>        TreeNode&lt;K,V&gt; prev;    <span class="hljs-comment">// needed to unlink next upon deletion</span><br>        <span class="hljs-keyword">boolean</span> red;<br>        <span class="hljs-function"><span class="hljs-keyword">final</span> TreeNode&lt;K,V&gt; <span class="hljs-title">getTreeNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> h, Object k)</span> </span>&#123;<br>            <span class="hljs-comment">//调用getTreeNode方法的结点parent不空 则从这棵树的根节点开始查找</span><br>            <span class="hljs-keyword">return</span> ((parent != <span class="hljs-keyword">null</span>) ? root() : <span class="hljs-keyword">this</span>).find(h, k, <span class="hljs-keyword">null</span>);<br>        &#125;<br>    	<span class="hljs-comment">//平衡二叉树查找</span><br>        <span class="hljs-function"><span class="hljs-keyword">final</span> TreeNode&lt;K,V&gt; <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> h, Object k, Class&lt;?&gt; kc)</span> </span>&#123;<br>            TreeNode&lt;K,V&gt; p = <span class="hljs-keyword">this</span>;<br>            <span class="hljs-keyword">do</span> &#123;<br>                <span class="hljs-keyword">int</span> ph, dir; K pk;<br>                TreeNode&lt;K,V&gt; pl = p.left, pr = p.right, q;<br>                <span class="hljs-comment">//根节点hash比h大 去左子树查找</span><br>                <span class="hljs-keyword">if</span> ((ph = p.hash) &gt; h)<br>                    p = pl;<br>                <span class="hljs-comment">//否则去右子树查找</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ph &lt; h)<br>                    p = pr;<br>                <span class="hljs-comment">//key相同 找到了</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((pk = p.key) == k || (k != <span class="hljs-keyword">null</span> &amp;&amp; k.equals(pk)))<br>                    <span class="hljs-keyword">return</span> p;<br>                <span class="hljs-comment">//左子树为空 查找右子树</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pl == <span class="hljs-keyword">null</span>)<br>                    p = pr;<br>                <span class="hljs-comment">//右子树为空 查左子树</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pr == <span class="hljs-keyword">null</span>)<br>                    p = pl;<br>                <span class="hljs-comment">//根据用户传入的比较逻辑 进行比较</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((kc != <span class="hljs-keyword">null</span> ||<br>                          (kc = comparableClassFor(k)) != <span class="hljs-keyword">null</span>) &amp;&amp;<br>                         (dir = compareComparables(kc, k, pk)) != <span class="hljs-number">0</span>)<br>                    p = (dir &lt; <span class="hljs-number">0</span>) ? pl : pr;<br>                <span class="hljs-comment">//上述条件都不满足 直接去右子树查找</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((q = pr.find(h, k, kc)) != <span class="hljs-keyword">null</span>)<br>                    <span class="hljs-keyword">return</span> q;<br>                <span class="hljs-comment">//去左子树查找</span><br>                <span class="hljs-keyword">else</span><br>                    p = pl;<br>            &#125; <span class="hljs-keyword">while</span> (p != <span class="hljs-keyword">null</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="remove-Object-key-方法"><a href="#remove-Object-key-方法" class="headerlink" title="remove(Object key)方法"></a>remove(Object key)方法</h3><p>根据key删除元素</p>
+<h5 id="方法流程-3"><a href="#方法流程-3" class="headerlink" title="方法流程"></a>方法流程</h5><ol>
+<li>根据key的hash值查找对应的桶</li>
+<li>如果是空桶直接返回null</li>
+<li>如果桶不为空，且第一个元素就是要删除的，用node保留这个结点。否则转到4</li>
+<li>查看后续元素，如果是树结点，则调用树的逻辑，普通结点则遍历链表</li>
+<li>如果找到了要删除的结点，则进行删除，否则返回null</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> V <span class="hljs-title">remove</span><span class="hljs-params">(Object key)</span> </span>&#123;<br>    Node&lt;K,V&gt; e;<br>    <span class="hljs-keyword">return</span> (e = removeNode(hash(key), key, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>)) == <span class="hljs-keyword">null</span> ?<br>        <span class="hljs-keyword">null</span> : e.value;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">final</span> Node&lt;K,V&gt; <span class="hljs-title">removeNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> hash, Object key, Object value,</span></span><br><span class="hljs-params"><span class="hljs-function">                           <span class="hljs-keyword">boolean</span> matchValue, <span class="hljs-keyword">boolean</span> movable)</span> </span>&#123;<br>    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="hljs-keyword">int</span> n, index;<br>    <span class="hljs-keyword">if</span> ((tab = table) != <span class="hljs-keyword">null</span> &amp;&amp; (n = tab.length) &gt; <span class="hljs-number">0</span> &amp;&amp;<br>        (p = tab[index = (n - <span class="hljs-number">1</span>) &amp; hash]) != <span class="hljs-keyword">null</span>) &#123;<br>        Node&lt;K,V&gt; node = <span class="hljs-keyword">null</span>, e; K k; V v;<br>        <span class="hljs-comment">//桶中第一个元素就是要删除的元素 则用node保留p</span><br>        <span class="hljs-keyword">if</span> (p.hash == hash &amp;&amp;<br>            ((k = p.key) == key || (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k))))<br>            node = p;<br>        <span class="hljs-comment">//第一个元素不是要删除的 则查看后续元素</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((e = p.next) != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">//如果是树 则用红黑树的逻辑删除</span><br>            <span class="hljs-keyword">if</span> (p <span class="hljs-keyword">instanceof</span> TreeNode)<br>                node = ((TreeNode&lt;K,V&gt;)p).getTreeNode(hash, key);<br>            <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">//否则 遍历链表</span><br>                <span class="hljs-keyword">do</span> &#123;<br>                    <span class="hljs-keyword">if</span> (e.hash == hash &amp;&amp;<br>                        ((k = e.key) == key ||<br>                         (key != <span class="hljs-keyword">null</span> &amp;&amp; key.equals(k)))) &#123;<br>                        node = e;<br>                        <span class="hljs-keyword">break</span>;<br>                    &#125;<br>                    p = e;<br>                &#125; <span class="hljs-keyword">while</span> ((e = e.next) != <span class="hljs-keyword">null</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//找到了要删除的点 </span><br>        <span class="hljs-comment">//如果matchValue为false 则直接开始删除</span><br>        <span class="hljs-comment">//如果matchValue为true 则还要检查value是否匹配</span><br>        <span class="hljs-keyword">if</span> (node != <span class="hljs-keyword">null</span> &amp;&amp; (!matchValue || (v = node.value) == value ||<br>                             (value != <span class="hljs-keyword">null</span> &amp;&amp; value.equals(v)))) &#123;<br>            <span class="hljs-comment">//树节点删除</span><br>            <span class="hljs-keyword">if</span> (node <span class="hljs-keyword">instanceof</span> TreeNode)<br>                ((TreeNode&lt;K,V&gt;)node).removeTreeNode(<span class="hljs-keyword">this</span>, tab, movable);<br>            <span class="hljs-comment">//如果要删除的是桶的第一个元素 直接让桶头指向第二个元素</span><br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (node == p)<br>                tab[index] = node.next;<br>            <span class="hljs-comment">//普通链表 删除结点</span><br>            <span class="hljs-keyword">else</span><br>                p.next = node.next;<br>            ++modCount;<br>            <span class="hljs-comment">//元素个数减1</span><br>            --size;<br>            <span class="hljs-comment">//此处函数体为空 LinkedHashMap才会使用afterNodeRemoval</span><br>            afterNodeRemoval(node);<br>            <span class="hljs-keyword">return</span> node;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文分析了从HashMap最常用的put、get、remove方法入手，分析了其关联方法的代码。</p>
+<p>其中，红黑树的插入删除逻辑等文中没有具体分析。计划之后专门写一篇红黑树的文章，再将这部分补充上。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903817855631373#heading-17">https://juejin.cn/post/6844903817855631373#heading-17</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012926722">https://segmentfault.com/a/1190000012926722</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/cs/">cs</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/f6a391.html">
+                        <span class="hidden-mobile">JAVA源码详解之优先队列PriorityQueue（逐行注释）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-api-liard-xi.vercel.app/","path":"window.location.pathname","placeholder":null,"meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        new Waline(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          Fluid.plugins.initFancyBox('#waline .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
