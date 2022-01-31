@@ -19,7 +19,7 @@
     <meta name="description" content="前言String是Java中十分常用的类，在面试题中也是出镜率很高的常客，本文将我自己学习中遇到的一些问题进行整理，如果有误，欢迎指正。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="带你看看Java中String对象不得不说的那些事">
-<meta property="og:url" content="https://eziozhao.github.io/article/cd20e058.html">
+<meta property="og:url" content="https://eziozhao.com/article/cd20e058.html">
 <meta property="og:site_name" content="EzioZhao‘s Blog">
 <meta property="og:description" content="前言String是Java中十分常用的类，在面试题中也是出镜率很高的常客，本文将我自己学习中遇到的一些问题进行整理，如果有误，欢迎指正。">
 <meta property="og:locale" content="en_US">
@@ -69,7 +69,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"eziozhao.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pRrghU6C2kVLWLl2ICNbip18-MdYXbMMI","app_key":"poUPYW0HWTxckQahjsPrb3K9","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"eziozhao.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pRrghU6C2kVLWLl2ICNbip18-MdYXbMMI","app_key":"poUPYW0HWTxckQahjsPrb3K9","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -285,7 +285,7 @@
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>对于字符串表达式而言</p>
 <p>1、对于编译期能直接确定的值（字面量、声明为final的变量），会直接将表达式的结果放入常量池。</p>
 <p>2、如果编译期不能直接直接确定（非final的变量），那么只将已经声明字符串字面常量放入常量池，表达式的结果不放入常量池。</p>
-<p>关于常量池的更多介绍欢迎查看我的另一篇博客<a target="_blank" rel="noopener" href="https://eziozhao.com/article/7df7aca7.html">一张图秒懂JVM内存区域的划分</a></p>
+<p>关于常量池的更多介绍欢迎查看我的另一篇博客<a href="https://eziozhao.com/article/7df7aca7.html">一张图秒懂JVM内存区域的划分</a></p>
 <p><strong>另一个出镜率很高的问题是如下的这段代码创建了几个对象？</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">String s = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;xyz&quot;</span>);<br></code></pre></td></tr></table></figure>
 

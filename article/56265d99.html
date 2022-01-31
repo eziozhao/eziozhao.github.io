@@ -19,7 +19,7 @@
     <meta name="description" content="前言浏览器是如今必不可少的工具之一，每天都有无数人通过浏览器获取自己需要的信息。那么当你在浏览器中键入一行网址后究竟发生了什么？我们下面一起捋一捋。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="天天都用浏览器的你知道输入网址后发生了什么吗？">
-<meta property="og:url" content="https://eziozhao.github.io/article/56265d99.html">
+<meta property="og:url" content="https://eziozhao.com/article/56265d99.html">
 <meta property="og:site_name" content="EzioZhao‘s Blog">
 <meta property="og:description" content="前言浏览器是如今必不可少的工具之一，每天都有无数人通过浏览器获取自己需要的信息。那么当你在浏览器中键入一行网址后究竟发生了什么？我们下面一起捋一捋。">
 <meta property="og:locale" content="en_US">
@@ -69,7 +69,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"eziozhao.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pRrghU6C2kVLWLl2ICNbip18-MdYXbMMI","app_key":"poUPYW0HWTxckQahjsPrb3K9","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"eziozhao.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pRrghU6C2kVLWLl2ICNbip18-MdYXbMMI","app_key":"poUPYW0HWTxckQahjsPrb3K9","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -276,7 +276,7 @@
 
 <p>找到ip地址后会将其存入DNS缓存方便下次查询。</p>
 <h5 id="DNS负载均衡"><a href="#DNS负载均衡" class="headerlink" title="DNS负载均衡"></a>DNS负载均衡</h5><p>如果一个网站用户很多，那么一台机器显然无法满足大量的请求。DNS负载均衡可以在DNS服务器中为一个域名配备多个ip地址，从而引导用户访问到不同的机器。CDN就是负载均衡技术的体现，它把和用户最近的服务器ip返回给用户。</p>
-<h4 id="浏览器进行http请求-服务器返回响应"><a href="#浏览器进行http请求-服务器返回响应" class="headerlink" title="浏览器进行http请求 服务器返回响应"></a>浏览器进行http请求 服务器返回响应</h4><p>http是使用tcp作为传输协议的，关于tcp协议可以参考我的<a target="_blank" rel="noopener" href="https://eziozhao.com/article/a44e94be.html">另一篇文章</a>。这一段传输过程可以参考《图解HTTP》中的下图。</p>
+<h4 id="浏览器进行http请求-服务器返回响应"><a href="#浏览器进行http请求-服务器返回响应" class="headerlink" title="浏览器进行http请求 服务器返回响应"></a>浏览器进行http请求 服务器返回响应</h4><p>http是使用tcp作为传输协议的，关于tcp协议可以参考我的<a href="https://eziozhao.com/article/a44e94be.html">另一篇文章</a>。这一段传输过程可以参考《图解HTTP》中的下图。</p>
 <p><img src="https://gitee.com/eziozhao/image/raw/master/Img/20210213165400.png" srcset="/img/loading.gif" lazyload alt="image-20210213165353534"></p>
 <h4 id="浏览器渲染页面"><a href="#浏览器渲染页面" class="headerlink" title="浏览器渲染页面"></a>浏览器渲染页面</h4><p>浏览器首先解析HTML构建DOM树，然后解析CSS构建CSS规则树，将DOM树和规则树合成渲染树。之后遍历渲染树开始布局，计算每个节点的位置大小信息，将渲染树每个节点绘制到屏幕。具体过程可以参考<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903565610188807">这篇文章</a></p>
 <p><img src="https://gitee.com/eziozhao/image/raw/master/Img/20210213193103.png" srcset="/img/loading.gif" lazyload alt="image-20210213193103625"></p>
